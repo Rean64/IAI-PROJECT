@@ -1,0 +1,112 @@
+body{
+  margin: 0;
+  padding-top: 150px;
+  background-image: linear-gradient(rgba(5, 3, 131, 0.363),rgba(0, 0, 0, 0.644)),url(../images/preview.jpg);
+  background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      height: 100vh;
+}
+
+.navbar{
+  background-color: rgb(30, 30, 83);
+
+}
+.nav-link{
+  color: white !important;
+}
+.nav-link:hover{
+  color: rgb(6, 149, 231) !important;
+}
+
+.navbar-brand img{
+  margin-left: -70px !important;
+}
+
+.project {
+  position: relative;
+  overflow: hidden;
+}
+
+.project .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 20, 51, 0.541);
+  padding: 30px;
+  display: flex;
+  align-items: flex-end;
+  transition: all 0.4s linear;
+  opacity: 0;
+}
+.project .overlay div{
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}
+
+.project img {
+  width: 100%;
+  height: 340px;
+  transition: all 0.4s linear;   
+}
+
+.project:hover .overlay{
+  opacity: 1;
+}
+
+.project:hover img {
+  transform: scale(1.1);
+}
+
+.popup{
+  position: fixed;
+  top: 8%;
+  left: 35%;
+  z-index: 99999;
+  transform: translate(0%, 0%) scale(1);
+  width: 400px;
+  height: 200px;
+  background-color: #4070f4;
+  border-radius: 6px;
+  text-align: center;
+  opacity: 0;
+  padding: 0 30px 30px;
+  color: #fff;
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+
+.popup .i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  background-color:#4070f4;
+  font-size: 24px;
+  margin-top: -50px;
+  margin-left: 120px;
+  /* margin-bottom: 30px; */
+  border-radius: 50%;
+}
+
+
+.show {
+  transform: scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.close-btn{
+  padding: 5px 30px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  margin-left: 0px !important;
+  background-color: #051b58 !important;
+}

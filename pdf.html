@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./node_modules/css/bootstrap.min.css">
+  <title>PDF_Copy</title>
+  <script type="text/javascript" src="unpkg/jspdf.min.js"></script>
+  <script type="text/javascript" src="unpkg/html2canvas.js"></script>
+  <style>
+    body{
+      height: 100vh;
+    }
+    #line{
+      margin-top: 19px;
+      margin-left: 320px;
+      width: 500px;
+      border-bottom: 1px solid black;
+      border-top: 1px solid black;
+    }
+    #lines{
+      margin-top: 19px;
+      margin-left: 320px;
+      width: 500px;
+      border-style: dotted;
+      border-bottom-style: 1px solid black;
+      border-top-style: none;
+      border-left-style: none;
+      border-right-style: none;
+    }
+    .container{
+      max-width: 1000px;
+    }
+
+    input{
+      border: none;
+    }
+    #result{
+      background-color: white;
+      font-family: roboto;
+    }
+  </style>
+</head>
+<bod>
+
+  <div id="result">
+  <div class="head">
+    <a href="#" class="navbar-brand">
+      <img src="./images/logo1.png" alt="" width="200">
+    </a>
+    <h3 class="text-center" style="margin-left: -200px;">ASSURLIFECAMER</h3>
+    <h3 class="text-center" id="line">CONTRAT D'ASSURANCE VIE</h3>
+    <h3 class="text-center" id="lines">Conditions Participations</h3>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row justify-content-between align-items-center py-2 g-5">
+      <div class="col-md col-md-6">
+        Nom Produit: <input type="text" value="Mixte retraite individuelle" >
+      </div>
+      <div class="col-md col-md-6">
+        Rep: PAUL ASSAMBA
+      </div>
+    </div>
+    <div class="row justify-content-between align-items-center py-2 g-5">
+      <div class="col-md col-md-6">
+        ASSURE: <input type="text" value="Nysdoir Mec">
+      </div>
+      <div class="col-md col-md-6">
+        DATE DE NAISSANCE: <input type="text" value="2000-01-12" >
+      </div>
+    </div>
+    <div class="row justify-content-between align-items-center py-2 g-5">
+      <div class="col-md col-md-6">
+        BENEFICAIRE: <input type="text" value="10,000CFA" >
+      </div>
+      <div class="col-md col-md-6">
+        MONNAIE DE: CAMEROUN
+      </div>
+    </div>
+    <div class="row justify-content-between align-items-center py-2 g-5">
+      <div class="col-md col-md-6">
+        PRIME PAYABLE: <input type="text" value="Annuelle" >
+      </div>
+      <div class="col-md col-md-6">
+        DUREE: <input type="text" value="7 weeks" >
+      </div>
+    </div>
+    <div class="row justify-content-between align-items-center py-2 g-5">
+      <div class="col-md col-md-6">
+        MONTANT NOMIMALE FCFA: <input type="text" value="25,000CFA" >
+      </div>
+      <div class="col-md col-md-6">
+        DATE DU JOUR: <input type="text" value="2023-09-18" >
+      </div>
+    </div>
+    <div class="row justify-content-between align-items-center py-2 g-5">
+      <div class="col-md col-md-6">
+       FAIT A DOUALA
+      </div>
+      <div class="col-md col-md-6">
+        TOTAL: 25,000CFA
+      </div>
+    </div>
+  </div>
+  <div class="container py-2 px-5">
+    <div class="row">
+      <div class="col-md col-md-12">
+        <input type="text" value="Nysdoir Mec" style="width: 100px;"> Je Reconnous avoir pris connocument
+        des conditions et avautaguen lees a ce contract.
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between align-content-center px-5 mt-3" style="width: 800px; margin-left: 150px;">
+    <p>Signature Client</p>
+    <p>Signature DG</p>
+  </div>
+</div>
+
+  <script type="text/javascript">
+    function gendf() {
+        var doc = new jsPDF();
+
+        doc.addHTML(document.getElementById('result'), function () {
+            doc.save('contract form');
+            alert("Downloaded!");
+
+        });
+    }
+
+</script>
+<div align="center" style="margin-top: 10px;margin-left:-200px">
+    <button id="saveaspdf" class="btn btn-info btn-lg" onclick="gendf()">SAVE AS PDF</button>
+</div>
+  <script src="./node_modules/js/bootstrap.min.js"></script>
+</body>
+</html>

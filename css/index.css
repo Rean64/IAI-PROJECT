@@ -1,0 +1,48 @@
+body{
+  margin: 0;
+  /* padding-top: 150px; */
+  background-image: linear-gradient(rgba(5, 3, 131, 0.363),rgba(0, 0, 0, 0.644)),url(../images/preview.jpg);
+  background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      height: 100vh;
+}
+
+.project {
+  position: relative;
+  overflow: hidden;
+}
+
+.project .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 20, 51, 0.541);
+  padding: 30px;
+  display: flex;
+  align-items: flex-end;
+  transition: all 0.4s linear;
+  opacity: 0;
+}
+.project .overlay div{
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}
+
+.project img {
+  width: 100%;
+  height: 340px;
+  transition: all 0.4s linear;   
+}
+
+.project:hover .overlay{
+  opacity: 1;
+}
+
+.project:hover img {
+  transform: scale(1.1);
+}
