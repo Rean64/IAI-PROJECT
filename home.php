@@ -58,7 +58,7 @@
               <div class="col-lg-4 col-sm-6">
               
                   <div class="project">
-                      <img src="images/p-1.jpg" alt="" class="img-fluid">
+                      <img src="images/p.jpg" alt="" class="img-fluid">
                       <div class="overlay d-block">
                           <div class="mb-5">
                               <h4 class="text-white">EDUCATION SCOLAIRE</h4>
@@ -74,7 +74,7 @@
               </div>
               <div class="col-lg-4 col-sm-6">
                   <div class="project">
-                      <img src="images/p-2.jpg" alt="">
+                      <img src="images/pp.jpg" alt="">
                       <div class="overlay d-block">
                         <div class="mb-5">
                             <h4 class="text-white">MIXTE Retraite Individuelle (MIRI)</h4>
@@ -89,7 +89,7 @@
               </div>
               <div class="col-lg-4 col-sm-6">
                   <div class="project">
-                      <img src="images/p-3.jpg" alt="">
+                      <img src="images/Ppp.jpg" alt="">
                       <div class="overlay d-block">
                         <div class="mb-5">
                             <h4 class="text-white">MIXTE ANTICIPEE</h4>
