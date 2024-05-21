@@ -72,21 +72,10 @@ if(isset($_POST['login'])){
             placeholder="Entrer Mot de passe"
             name="password"
             required
-          />
-
-          <label>
-            <input
-              type="checkbox"
-              checked="checked"
-              name="remember"
-              style="margin-bottom: 15px"
-            />
-            Remember me
-          </label>
-          
+          />       
           
          
-          <div class="buttons">
+          <div class="buttons d-flex">
             <a href="index.php"><button type="button" class="cancelbtn">Retour</button></a>
             <button type="submit" name="login" class="signupbtn">Connexion</button>
           </div>

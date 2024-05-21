@@ -1,0 +1,128 @@
+
+* {
+    box-sizing: border-box;
+
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+article,
+aside,
+dialog,
+figcaption,
+figure,
+header,
+hgroup,
+main,
+nav,
+section {
+    display: block;
+}
+
+body {
+    margin: 0;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #282f53;
+    text-align: left;
+    background-color: #f0f0f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+}
+
+
+
+.main-content-label,
+.card-table-two .card-title,
+.card-dashboard-eight .card-title {
+    color: #1d212f;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: 0.2px;
+}
+
+
+
+.rtl .main-content-app .dropdown i {
+    float: right;
+}
+
+.rtl .main-content-app .main-chat-body .content-inner .main-msg-wrapper .fe-download {
+    float: left;
+    margin-top: 4px !important;
+}
+
+
+.rtl .main-content-body-chat .border-start-0 {
+    border-left: 1px solid #e9edf4 !important;
+}
+
+.main-chat-contacts-wrapper .main-content-label,
+.main-chat-contacts-wrapper .card-table-two .card-title {
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+
+.main-content-body-chat {
+    flex-direction: column;
+}
+
+@media (min-width: 992px) {
+    .main-content-body-chat {
+        display: flex;
+    }
+}
+
+
+.main-content-title {
+    color: #170c6b;
+    font-weight: 500;
+    font-size: 32px;
+    text-indent: -1px;
+    line-height: 1;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+    .main-content-app {
+        height: calc(100vh - 250px);
+    }
+}
+
+
+
+@media (max-width: 575px) and (min-width: 500px) {
+    .main-content-app .main-chat-header {
+        display: flex !important;
+    }
+}
+
+.footers{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

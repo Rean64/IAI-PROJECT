@@ -23,13 +23,16 @@
             <a href="login.php">Connexion</a>
           </p>
 
-          <label for="name">Nom</label>
+          <div class="d-flex">
+               <!-- <label for="name">Nom</label> -->
           <input type="text" placeholder="Entrer Nom" name="name" required />
 
-          <label for="email">Email</label>
+          <!-- <label for="email">Email</label> -->
           <input type="email" placeholder="Entrer Email" name="email" required />
-
-          <label for="psw">Mot de passe</label>
+          </div>
+       
+        <div class="d-flex">
+          <!-- <label for="psw">Mot de passe</label> -->
           <input
             type="password"
             placeholder="Entrer votre mot de passe"
@@ -37,30 +40,35 @@
             required
           />
 
-          <label for="phone">Telephone</label>
+          <!-- <label for="phone">Telephone</label> -->
           <input
             type="tel"
-            placeholder="Entrer votre numero de telephone"
+            placeholder="Entrer votre numero"
             name="phone"
             required
           />
-          <label for="location">Localisation</label>
+          </div>
+
+          <div class="d-flex">
+          <!-- <label for="location">Localisation</label> -->
           <input
             type="text"
             placeholder="Entrer votre Localisation"
             name="location"
             required
           />
-          <label for="age">Date de naissance</label>
+          <!-- <label for="age">Date de naissance</label> -->
           <input
             type="date"
-            placeholder="Entrer votre date de naissance"
+            value="<?= date('Y-m-d')?>"
             name="age"
             required
           />
-          <label for="gender">Sexe</label>
+
+          </div>
+          <!-- <label for="gender">Sexe</label> -->
          <select name="gender" id="gender" required>
-          <option value=""></option>
+          <option value="" selected disabled> Sex</option>
           <option value="Homme">Homme</option>
           <option value="Femme">Femme</option>
          </select>

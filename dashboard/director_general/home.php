@@ -1,11 +1,32 @@
 <?php
   session_start();
-  require 'db.php';
+  require 'db.php';  
 ?>
-<style>
-  body{
-    padding-top:100px;
-  }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="../icons/css/all.min.css">
+  <link rel="stylesheet" href="notify.css?<?php echo time(); ?>">
+  <script src="./js/jquery.js"></script>
+  <title>Director General</title>
+  <style>
+    body{
+      font-family: Roboto;
+      font-size: 15px;
+      background-image: linear-gradient(rgba(6, 3, 131, 0.767),rgba(0, 0, 0, 0.644)),url(./image/preview.jpg);
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      height: 100vh;
+      padding-bottom: 130px !important;
+      padding-top: 130px !important;
+    }
+
 
   .nav-link{
     color: white !important;
@@ -62,8 +83,20 @@
     margin-left: 0px !important;
     background-color: #051b58 !important;
   }
-</style>
-<?php include('includes/header.php'); ?>
+
+  </style>
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup",function(){
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function(){
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+</head>
+<body>
 
  <!-- header -->
  <nav class="navbar navbar-light navbar-expand-lg bg py-3 text-light fixed-top">
@@ -90,10 +123,10 @@
   </nav>
   <!-- header end  -->
 
+  <?php include 'message.php' ?>
   
-  <div class="container-xxl mt-5">
+  <div class="container-fluid mt-5">
  
-    <?php include('message.php') ?>
 
     <div class="row">
       <div class="col-md-12">
@@ -129,6 +162,7 @@
                 </thead>
                 <tbody id="myTable">
                   <?php
+                    $count = 1;
                       $query = "SELECT * FROM contract";
                       $query_run = mysqli_query($con, $query);
 
@@ -139,7 +173,7 @@
                             ?>
 
                             <tr>
-                              <td><?= $personel['id']; ?></td>
+                              <td><?= $count++; ?></td>
                               <td><?= $personel['assure']; ?></td>
                               <td><?= $personel['montant']; ?></td>
                               <td><?= $personel['taille']; ?></td>
@@ -177,7 +211,27 @@
     </div>
   </div>
 
-  <?php include('message1.php') ?>
 
-  
-<?php include('includes/footer.php'); ?>
+  <script>
+  let popup = document.querySelector(".popup");
+  let closePopup = document.querySelector(".popup-close");
+
+if (popup) {
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+        popup.classList.add("show");
+    }, 10000);
+  });
+
+  closePopup.addEventListener("click", () => {
+    popup.classList.remove("show");
+  });
+
+}
+</script>
+
+
+<script src="script.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,16 +1,25 @@
+
 <?php
 
 if(isset($_SESSION['message'])) :
 
 ?>
 
+    <div class="toast">
+        <div class="toast-content">
+            <i class="fas fa-solid fa-check check"></i>
 
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-<strong>Hey! </strong> <?= $_SESSION['message']; ?>
-<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+            <div class="message">
+                <span class="text text-1">Success</span>
+                <span class="text text-2"><?=$_SESSION['message']?></span>
+            </div>
+        </div>
+        <i class="fa-solid fa-xmark close"></i>
+
+        <div class="progress"></div>
+    </div>
 
 <?php
     unset($_SESSION['message']);
     endif;
-?>
+?> 

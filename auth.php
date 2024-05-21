@@ -10,9 +10,11 @@
         $location = mysqli_real_escape_string($con, $_POST['location']);
         $age = mysqli_real_escape_string($con, $_POST['age']);
         $gender = mysqli_real_escape_string($con, $_POST['gender']);
+        $random_id = rand(time(), 10000000);//creating random id for users
+
     
-        $query = "INSERT INTO client(name,email,password,phone,location,age,gender)";
-        $query .= "VALUES ('$name','$email','$password','$phone','$location','$age','$gender')";
+        $query = "INSERT INTO client(name,email,password,phone,location,age,gender,unique_id)";
+        $query .= "VALUES ('$name','$email','$password','$phone','$location','$age','$gender','$random_id')";
     
     
         $query_run = mysqli_query($con, $query);
@@ -28,5 +30,8 @@
           exit(0);
         }
       }
-     
+
+
+
+    
 ?>

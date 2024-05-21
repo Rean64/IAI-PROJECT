@@ -3,36 +3,7 @@
   require 'db.php';
 ?>
 
-<?php
-if(isset($_POST['taken']))
-{
-  $id = mysqli_real_escape_string($con, $_POST['id']);
-  $name = mysqli_real_escape_string($con, $_POST['assure']);
-  $message = "Souscription reussi.";
 
-  $query = "INSERT INTO messages(id,name,message)";
-
-  $query .= "VALUES ('$id','$name','$message')";
-  
-  mysqli_query($con, $query);
-
-  }
-  
-if(isset($_POST['reject']))
-{
-  $id = mysqli_real_escape_string($con, $_POST['id']);
-  $name = mysqli_real_escape_string($con, $_POST['assure']);
-  $message = "Soustription rejeter.";
-
-  $query = "INSERT INTO messages(id,name,message)";
-
-  $query .= "VALUES ('$id','$name','$message')";
-  
-  mysqli_query($con, $query);
-
-  }
-
-  ?>
 
 <style>
   body{
@@ -48,6 +19,7 @@ if(isset($_POST['reject']))
   }
 </style>
 <?php include('includes/header.php'); ?>
+
 
  <!-- header -->
  <nav class="navbar navbar-light navbar-expand-lg bg py-3 text-light fixed-top">
@@ -75,7 +47,7 @@ if(isset($_POST['reject']))
   <!-- header end  -->
 
   
-  <div class="container-xxl mt-5">
+  <div class="container-fluid mt-5">
  
     <?php include('message.php') ?>
 
@@ -113,6 +85,7 @@ if(isset($_POST['reject']))
                 </thead>
                 <tbody id="myTable">
                   <?php
+                    $count = 1;
                       $query = "SELECT * FROM contract";
                       $query_run = mysqli_query($con, $query);
 
@@ -123,7 +96,7 @@ if(isset($_POST['reject']))
                             ?>
 
                             <tr>
-                              <td><?= $personel['id']; ?></td>
+                              <td><?= $count++; ?></td>
                               <td><?= $personel['assure']; ?></td>
                               <td><?= $personel['montant']; ?></td>
                               <td><?= $personel['taille']; ?></td>
@@ -137,13 +110,13 @@ if(isset($_POST['reject']))
                               <td><?= $personel['date']; ?></td>
                               <td><?= $personel['duree']; ?></td>
                               <td>
-                                <a href="view.php?id=<?= $personel['id']; ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"  style="color:white"></i></a>
-                                <a href="pdf.php?id=<?= $personel['id']; ?>" id="print" class="btn btn-success btn-sm show"><i class="fas fa-print"  style="color:white"></i></a>
-                                <form action="#" method="POST" class="d-inline">
-                                  <input type="hidden" name="id" value="<?=$personel['id'];?>">
-                                  <input type="hidden" name="assure" value="<?=$personel['assure'];?>">
-                                  <button name="taken" type="submit" id="check" class="btn btn-success btn-sm"><i class="fas fa-check"  style="color:white"></i></button>
-                                  <button name="reject" type="submit" class="btn btn-danger btn-sm"><i class="fas fa-xmark"  style="color:white"></i></button>
+                                  <a href="view.php?id=<?= $personel['id']; ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"  style="color:white"></i></a>
+                                  <a href="pdf.php?id=<?= $personel["id"]; ?>" id="print" class="btn btn-success btn-sm show" style="color:white;display: <?php echo htmlspecialchars($_SESSION['info'] ? 'inline-block' : 'none'); ?>"><i class="fas fa-print"></i></a>
+                                  <form action="code.php" method="POST" class="d-inline form-submit">
+                                  <input type="hidden" name="id" class="id" value="<?=$personel['id'];?>">
+                                  <input type="hidden" name="assure" class="assure" value="<?=$personel['assure'];?>">
+                                  <button name="taken" type="submit" id="check" class="btn btn-success btn-sm  taken"><i class="fas fa-check"  style="color:white"></i></button>
+                                  <button name="reject" type="submit" class="btn btn-danger btn-sm reject"><i class="fas fa-xmark"  style="color:white"></i></button>
                                 </form>
                                   <!-- <button type="submit" name="delete_personel" value="<?=$personel['id'];?>" class="btn btn-danger btn-sm">Delete</button> -->
                               </td>
@@ -164,8 +137,9 @@ if(isset($_POST['reject']))
     </div>
   </div>
 
-  
 
 
 
+
+<script src="notify/script.js"></script>
 <?php include('includes/footer.php'); ?>

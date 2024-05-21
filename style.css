@@ -6,19 +6,12 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
 body{
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.562),rgba(0, 0, 0, 0.562)),url(preview.jpg);
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    height: 100vh;
+  position: relative;
 }
-.container{
+
+.xp{
     position: relative;
     max-width: 900px;
     width: 100%;
@@ -28,13 +21,13 @@ body{
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
-.container header{
+.xp header{
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
-.container header::before{
+.xp header::before{
     content: "";
     position: absolute;
     left: 0;
@@ -44,19 +37,19 @@ body{
     border-radius: 8px;
     background-color: #4070f4;
 }
-.container form{
+.xp form{
     position: relative;
     margin-top: 16px;
     min-height: 490px;
     background-color: #fff;
     overflow: hidden;
 }
-.container form .form{
+.xp form .form{
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
 }
-.container form .form.second{
+.xp form .form.second{
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
@@ -71,7 +64,7 @@ form.secActive .form.first{
     pointer-events: none;
     transform: translateX(-100%);
 }
-.container form .title{
+.xp form .title{
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -79,7 +72,7 @@ form.secActive .form.first{
     margin: 6px 0;
     color: #333;
 }
-.container form .fields{
+.xp form .fields{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -118,7 +111,7 @@ form .fields .input-field{
 .input-field input[type="date"]:valid{
     color: #333;
 }
-.container form button, .backBtn{
+.xp form button, .backBtn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,7 +127,7 @@ form .fields .input-field{
     transition: all 0.3s linear;
     cursor: pointer;
 }
-.container form .btnText{
+.xp form .btnText{
     font-size: 14px;
     font-weight: 400;
 }
@@ -157,10 +150,10 @@ form .buttons button , .backBtn{
 }
 
 @media (max-width: 750px) {
-    .container form{
+    .xp form{
         overflow-y: scroll;
     }
-    .container form::-webkit-scrollbar{
+    .xp form::-webkit-scrollbar{
        display: none;
     }
     form .fields .input-field{
@@ -175,7 +168,7 @@ form .buttons button , .backBtn{
 }
 
 
-.popup{
+.popp{
     position: absolute;
     top: 0;
     left: 30%;
@@ -196,7 +189,7 @@ form .buttons button , .backBtn{
     top: 20%;
 }
 
-.popup .i {
+.popp .i {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -211,7 +204,281 @@ form .buttons button , .backBtn{
     border-radius: 50%;
 }
 
-.close-btn{
-    margin-left: 70px !important;
+.popp .close-btn{
+    width: 110px;
     background-color: #265df2 !important;
+    cursor: pointer;
+}
+.popp .close-btn:hover{
+    background-color: #265cf2d1 !important;
+}
+.popp .close-btn:active{
+    background-color: #265cf2a7 !important;
+}
+
+
+.pop {
+    position: fixed;
+    top: 0;
+    display: flex;
+    z-index: 99999   !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100svh;
+    background-color: #000000cc;
+    transform: translateY(0%);
+    transition: all .3s linear;
+}
+
+.pop .xp{
+    max-width: 900px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    /* border: 2px solid red; */
+}
+
+.pop .close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(222, 220, 220);
+    height: 3.5rem;
+    color: #039be5;
+    width: 3.5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+}
+
+.hide{
+    transform: translateY(-100%);
+}
+
+.d-flex{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-top: 10px;
+    margin-inline: auto;
+    overflow: hidden;
+}
+
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.929);
+    z-index: 9999;
+    transition: 0.3s;
+    transform: scale(1);
+  }
+  
+  .popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 95%;
+    max-width: 110rem;
+    margin: 0 auto;
+    height: 40rem;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    display: table;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 2px solid var(--color-primary);
+  }
+  
+  .popup-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    padding: 0.5rem;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    cursor: pointer;
+    scale: 0.7;
+  }
+  
+  .popup-close {
+    font-size: 3rem;
+    color: white;
+    background-color: white;
+  }
+  
+  .popup-left {
+    display: table-cell;
+    width: 50%;
+    height: 100%;
+    vertical-align: middle;
+  }
+  
+  .popup-right {
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+  }
+  
+  .popup-img-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .popup-img-container img.popup-img {
+    display: block;
+    width: 60rem;
+    height: 100%;
+    max-width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+  
+  .right-content {
+    text-align: start;
+    width: 85%;
+    margin: 0 auto;
+  }
+  
+  .right-content h1 {
+    font-size: 3rem;
+    width: auto;
+    color: #f2f2f2;
+    margin-bottom: 1.6rem;
+  }
+  .right-content h3 {
+    font-size: 2rem;
+    width: auto;
+    color: #f2f2f2;
+    margin-bottom: 1.6rem;
+  }
+  
+  .right-content p {
+    font-size: 14px;
+    color: #d1d1d1;
+    margin-bottom: 20px;
+  }
+  
+  .hide-popup {
+    transform: scale(0.2);
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .right-content {
+      width: 100%;
+    }
+  
+    .right-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.3rem;
+    }
+  }
+  
+  @media only screen and (max-width: 998px) {
+    .popup-right {
+      width: 100%;
+    }
+  
+    .popup-left {
+      display: none;
+    }
+  
+    .right-content h1 {
+      font-size: 2rem;
+    }
+    .right-content h3 {
+      font-size: 1rem;
+    }
+    .right-content p {
+      text-align: justify;
+    }
+  
+  }
+  
+
+  .navbar .dropdown ul {
+    display: block;
+    position: absolute;
+    left: 28px;
+    top: calc(100% + 30px);
+    margin: 0;
+    padding: 10px 0;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    background: #010645;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    transition: 0.3s;
+    border-radius: 4px;
+    list-style-type: none;
+  }
+
+  .navbar .dropdown ul li {
+    min-width: 200px;
+  }
+  
+  .navbar .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .navbar .dropdown ul a i {
+    font-size: 12px;
+  }
+
+  .navbar .dropdown ul a:hover,
+  .navbar .dropdown ul .active:hover,
+  .navbar .dropdown ul li:hover>a {
+    color: var(--color-primary);
+  }
+
+  .navbar .dropdown:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+  }
+
+
+  .navbar .dropdown .dropdown ul {
+    top: 0;
+    left: calc(100% - 30px);
+    visibility: hidden;
+  }
+
+  .navbar .dropdown .dropdown:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: 100%;
+    visibility: visible;
+  }
+
+
+@media (min-width: 1280px) and (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul {
+    left: -90%;
+  }
+
+  .navbar .dropdown .dropdown:hover>ul {
+    left: -100%;
+  }
 }

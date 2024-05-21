@@ -13,7 +13,7 @@
     <!-- Glide js -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css?<?php echo time();?>" />
-    <link rel="stylesheet" href="../fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../icons/css/all.min.css">
     <title>Director General</title>
     <style>
       body{
@@ -87,6 +87,7 @@
             </thead>
             <tbody>
               <?php
+              $count = 1;
                   $query = "SELECT * FROM director";
                   $query_run = mysqli_query($con, $query);
 
@@ -97,7 +98,7 @@
                         ?>
 
                         <tr>
-                          <td><?= $personel['id']; ?></td>
+                          <td><?= $count++; ?></td>
                           <td><?= $personel['name']; ?></td>
                           <td><?= $personel['email']; ?></td>
                           <td><?= $personel['password']; ?></td>

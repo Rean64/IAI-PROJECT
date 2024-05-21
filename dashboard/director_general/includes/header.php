@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./notify.css?<?php echo time(); ?>">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="../icons/css/all.min.css">
   <script src="./js/jquery.js"></script>

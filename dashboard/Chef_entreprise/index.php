@@ -13,7 +13,7 @@
     <!-- Glide js -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css?<?php echo time();?>" />
-    <link rel="stylesheet" href="../fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../icons/css/all.min.css">
     <title>Chef Homepage</title>
     <style>
       body{

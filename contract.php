@@ -25,14 +25,12 @@ if(isset($_POST['store']))
   $query_run = mysqli_query($con, $query);
 
     if($query_run){
-      $_SESSION['message'] = "Client Created Successfully";
       header("Location: home.php");
       exit(0);
     }else {
-      die("Connection error" .mysqli_error());
+      die("Connection error" . mysqli_error($con));
       exit(0);
     }
   }
  
-
 ?>

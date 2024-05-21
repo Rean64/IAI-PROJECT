@@ -1,7 +1,7 @@
 body{
   margin: 0;
   /* padding-top: 150px; */
-  background-image: linear-gradient(rgba(5, 3, 131, 0.363),rgba(0, 0, 0, 0.644)),url(../images/preview.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.822),rgba(0, 0, 0, 0.778)),url(../images/iai.jpg);
   background-size: cover !important;
       background-position: center !important;
       background-repeat: no-repeat;
@@ -12,6 +12,8 @@ body{
 .project {
   position: relative;
   overflow: hidden;
+  border-radius: 10px;
+  height: 270px;
 }
 
 .project .overlay {

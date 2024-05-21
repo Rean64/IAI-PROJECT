@@ -31,6 +31,9 @@
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
+            <a href="../post.php" class="nav-link active">Post</a>
+          </li>
+          <li class="nav-item">
             <a href="index.php" class="nav-link active">Compte</a>
           </li>
           <li class="nav-item">
@@ -75,6 +78,7 @@
                 </thead>
                 <tbody id="myTable">
                   <?php
+                  $count = 1;
                       $query = "SELECT * FROM admin";
                       $query_run = mysqli_query($con, $query);
 
@@ -85,7 +89,7 @@
                             ?>
 
                             <tr>
-                              <td><?= $personel['id']; ?></td>
+                              <td><?= $count++; ?></td>
                               <td><?= $personel['position']; ?></td>
                               <td><?= $personel['name']; ?></td>
                               <td><?= $personel['email']; ?></td>
@@ -151,6 +155,7 @@
                 </thead>
                 <tbody id="myTable1">
                   <?php
+                  $count = 1;
                       $query = "SELECT * FROM chef";
                       $query_run = mysqli_query($con, $query);
 
@@ -161,7 +166,7 @@
                             ?>
 
                             <tr>
-                              <td><?= $personel['id']; ?></td>
+                              <td><?= $count++; ?></td>
                               <td><?= $personel['position']; ?></td>
                               <td><?= $personel['name']; ?></td>
                               <td><?= $personel['email']; ?></td>
@@ -227,6 +232,7 @@
                 </thead>
                 <tbody id="myTable2">
                   <?php
+                      $count = 1;
                       $query = "SELECT * FROM director";
                       $query_run = mysqli_query($con, $query);
 
@@ -237,7 +243,7 @@
                             ?>
 
                             <tr>
-                              <td><?= $personel['id']; ?></td>
+                              <td><?= $count++; ?></td>
                               <td><?= $personel['position']; ?></td>
                               <td><?= $personel['name']; ?></td>
                               <td><?= $personel['email']; ?></td>
@@ -303,6 +309,7 @@
                 </thead>
                 <tbody id="myTable3">
                   <?php
+                  $count = 1;
                       $query = "SELECT * FROM services";
                       $query_run = mysqli_query($con, $query);
 
@@ -313,7 +320,7 @@
                             ?>
 
                             <tr>
-                              <td><?= $personel['id']; ?></td>
+                              <td><?= $count++; ?></td>
                               <td><?= $personel['position']; ?></td>
                               <td><?= $personel['name']; ?></td>
                               <td><?= $personel['email']; ?></td>
@@ -377,6 +384,7 @@
                 </thead>
                 <tbody id="myTables">
                   <?php
+                  $count = 1;
                       $query = "SELECT * FROM client";
                       $query_run = mysqli_query($con, $query);
 
@@ -387,7 +395,7 @@
                             ?>
 
                             <tr>
-                              <td><?= $personel['id']; ?></td>
+                              <td><?= $count++; ?></td>
                               <td><?= $personel['name']; ?></td>
                               <td><?= $personel['email']; ?></td>
                               <td><?= $personel['password']; ?></td>

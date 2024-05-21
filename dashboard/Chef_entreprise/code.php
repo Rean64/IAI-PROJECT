@@ -2,6 +2,53 @@
 session_start();
 require 'db.php';
 
+
+if(isset($_POST['taken']))
+{
+  $id = mysqli_real_escape_string($con, $_POST['id']);
+  $name = mysqli_real_escape_string($con, $_POST['assure']);
+  $message = "{$name} Souscription reussi.";
+  $_SESSION['mess'] = true;
+  $_SESSION['maxi'] = true;
+  $_SESSION['info'] = true;
+  $_SESSION['payment'] = true;
+  $_SESSION['ids'] = $id;
+  $query = "INSERT INTO messages(id,name,message)";
+  
+  $query .= "VALUES ('$id','$name','$message')";
+  
+  $sql = mysqli_query($con, $query);
+  
+  if($sql){
+    $_SESSION['t'] = $message;
+    header("Location: home.php");
+  }
+  
+}
+
+if(isset($_POST['reject']))
+{
+  $id = mysqli_real_escape_string($con, $_POST['id']);
+  $name = mysqli_real_escape_string($con, $_POST['assure']);
+  $message = "{$name} Soustription rejecter.";
+  $_SESSION['mess'] = true;
+  $_SESSION['maxi'] = true;
+  $_SESSION['info'] = false;
+  $query = "INSERT INTO messages(id,name,message)";
+  
+  $query .= "VALUES ('$id','$name','$message')";
+  
+  $sql = mysqli_query($con, $query);
+  
+  if($sql){
+    $_SESSION['t'] = $message;
+    header("Location: home.php");
+  }
+
+  }
+
+
+
 // if(isset($_POST['delete_personel']))
 // {
 //   $personel_id = mysqli_real_escape_string($con, $_POST['delete_personel']);
