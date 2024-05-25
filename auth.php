@@ -18,14 +18,19 @@
     
     
         $query_run = mysqli_query($con, $query);
+
         
     
         if($query_run){
-          $_SESSION['message'] = "Client Created Successfully";
-          header("Location: home.php");
-          exit(0);
+          $sql1=mysqli_query($con,"SELECT * FROM `client` WHERE `name`='{$name}'");
+          if(mysqli_num_rows($sql1)>0){
+            $row=mysqli_fetch_assoc($sql1);
+            $_SESSION['myuser']=$row['unique_id'];  //passing the unique id to the session variable 
+            header("Location: home.php");
+            exit(0);
+          }
         }else {
-          $_SESSION['message'] = "Client Not Created";
+           
           header("Location: create.php");
           exit(0);
         }

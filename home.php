@@ -81,7 +81,16 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-                <a href="#" class="nav-link" style="color:white;display: <?php echo htmlspecialchars($_SESSION['payment'] ? 'inline-block' : 'none'); ?>">Payment</a>
+                <?php 
+                  if(isset($_SESSION['payment'])){ 
+                  echo "<a href='#' class='nav-link' style='color:white;'>Payment</a>";
+                  }
+                  else{
+                    echo " ";
+                  }
+              ?>
+
+                <!-- <a href="#" class="nav-link" style="color:white;display: <?php echo htmlspecialchars($_SESSION['payment'] ? 'inline-block' : 'none');?>">Payment</a> -->
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link i">Compte</a>
@@ -159,8 +168,8 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
                           <h6 class="text-white"><?php echo $_SESSION['language'] == 'en' ? $texte   : $textf; ?></h6>
                       </div>
                       <div class="action" onclick='openPopUp(<?php echo $jsonData; ?>, "<?php echo $lang; ?>")'>
-                      <a href="productDetails.php?id=<?= $data['id'];?>"><button class="btn btn-info py-1 px-4"><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Learn More ' : 'Voir plus'); ?>&nbsp;<i
-                                    class="fas fa-angle-right"></i></button></a>
+                      <button class="btn btn-info py-1 px-4"><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Learn More ' : 'Voir plus'); ?>&nbsp;<i
+                                    class="fas fa-angle-right"></i></button>
                       <!-- <button class="btn btn-primary py-1 px-4 i">Souscrire</button> -->Z
                       </div>
                   </div>
@@ -176,12 +185,59 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
               
            
     </div>
-
+    <div id="popup1" class="popup hide-popup1">
+                        <div class="popup-content1">
+                            <div class="popup-close1">
+                                <i class='fas fa-xmark text-danger'></i>
+                            </div>
+                            <div class="popup-left1">
+                                <div class="popup-img-container1">
+                                    <img src="dashboard/assets/post_images/<?php echo htmlspecialchars($data['image']); ?>"
+                                        class="img-fluid popup-img1" alt="">
+                                </div>
+                            </div>
+                            <div class="popup-right1">
+                                <div class="right-content1">
+                                    <h1 id="title">
+                                        <?php echo htmlspecialchars($_SESSION['language'] == 'en' ? $data['titleEnglish'] : $data['titleFrench']); ?>
+                                    </h1>
+                                    <p id="description">
+                                        <?php echo htmlspecialchars($_SESSION['language'] == 'en' ? $data['descEnglish'] : $data['descFrench']); ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
     
-  </section>
+  </section><!-- popup section -->
+  <script>
+    function openPopUp(data, lang) {
+        // Assuming 'data' is the object passed from PHP
+        const popup = document.getElementById('popup1');
+        const close = document.querySelector('.popup-close1');
 
-  <!-- popup section -->
-  <div class="pop hide">
+        // Setting image source
+        const img = popup.querySelector('.popup-img1');
+        img.src = `dashboard/assets/post_images/${data.image}`;
+        img.alt = data.titleEnglish; // Or titleFrench, depending on the session language
+
+        // Setting title
+        const title = popup.querySelector('.popup-right1 .right-content1 h1');
+        title.textContent = lang == 'en' ? data.titleEnglish : data.titleFrench; // Or titleFrench
+
+        // Setting description
+        const desc = popup.querySelector('.popup-right1 .right-content1 p');
+        desc.textContent = lang == 'en' ? data.descEnglish : data.descFrench; // Or descFrench
+
+        // Show the popup
+        popup.classList.remove("hide-popup1");
+        popup.classList.add("show-popup1");
+        close.addEventListener('click', ()=>{
+          popup.classList.add("hide-popup1");
+        })
+    }
+</script>
+ <div class="pop hide">
                 <div class="close">
                    <i class="fas fa-xmark"></i>
                 </div>

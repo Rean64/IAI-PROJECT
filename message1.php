@@ -1,6 +1,6 @@
 <?php
 // session_start();
-
+$con=new mysqli('localhost','root','','iai-project');
 $query = "SELECT * FROM messages ORDER BY id DESC";
 $query_run = mysqli_query($con, $query);
 
@@ -25,5 +25,5 @@ if(mysqli_num_rows($query_run) > 0){
 }
 
 session_unset();
-session_destroy();
+// session_destroy();
   ?>

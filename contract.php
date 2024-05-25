@@ -17,10 +17,11 @@ if(isset($_POST['store']))
   $beneficaire = mysqli_real_escape_string($con, $_POST['beneficaire']);
   $age = mysqli_real_escape_string($con, $_POST['age']);
   $date = mysqli_real_escape_string($con, $_POST['date']);
-  $duree = mysqli_real_escape_string($con, $_POST['duree']);
+  $duree = mysqli_real_escape_string($con, $_POST['duree']);  
+  $user = $_SESSION['myuser']; 
 
-  $query = "INSERT INTO contract(assure,montant,taille,poid,product_name,banque,etat,prime,beneficaire,age,date,duree)";
-  $query .= "VALUES ('$assure','$montant','$taille','$poid','$product_name','$banque','$etat','$prime','$beneficaire','$age','$date','$duree')";
+  $query = "INSERT INTO contract(assure,montant,taille,poid,product_name,banque,etat,prime,beneficaire,age,date,duree,unique_id)";
+  $query .= "VALUES ('$assure','$montant','$taille','$poid','$product_name','$banque','$etat','$prime','$beneficaire','$age','$date','$duree','$user')";
   
   $query_run = mysqli_query($con, $query);
 

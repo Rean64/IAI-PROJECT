@@ -111,7 +111,15 @@
                               <td><?= $personel['duree']; ?></td>
                               <td>
                                   <a href="view.php?id=<?= $personel['id']; ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"  style="color:white"></i></a>
-                                  <a href="pdf.php?id=<?= $personel["id"]; ?>" id="print" class="btn btn-success btn-sm show" style="color:white;display: <?php echo htmlspecialchars($_SESSION['info'] ? 'inline-block' : 'none'); ?>"><i class="fas fa-print"></i></a>
+                                  <?php
+                                  if(isset($_SESSION['info'])){
+                                    echo "<a href=\"pdf.php?id=<?= \$personel['id']; ?>\" id=\"print\" class=\"btn btn-success btn-sm show\"><i class=\"fas fa-print\"></i></a>";
+                                  }
+                                  else{
+                                    echo " ";
+                                  }
+                                  ?>
+                                  <!-- <a href="pdf.php?id=<?= $personel["id"]; ?>" id="print" class="btn btn-success btn-sm show" style="color:white;display: <?php echo htmlspecialchars($_SESSION['info'] ? 'inline-block' : 'none'); ?>"><i class="fas fa-print"></i></a> -->
                                   <form action="code.php" method="POST" class="d-inline form-submit">
                                   <input type="hidden" name="id" class="id" value="<?=$personel['id'];?>">
                                   <input type="hidden" name="assure" class="assure" value="<?=$personel['assure'];?>">

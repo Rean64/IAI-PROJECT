@@ -1,5 +1,8 @@
 <?php
-
+ session_start();
+ if(isset($_SESSION['myuser'])){
+  header("Location:home.php");
+ }
 // Language : fr $ en
 if (!isset($_SESSION['language'])) {
   $_SESSION['language'] = "fr";

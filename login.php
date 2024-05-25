@@ -15,7 +15,9 @@ if(isset($_POST['login'])){
               $enc_pass = $row['password'];
               if($user_pass === $enc_pass){
                   echo "Succefully Login";
+                  $_SESSION['myuser']=$row['unique_id']; 
                   header("Location: home.php");
+
                   exit(0);
               }else{
                   $error = "Email ou Mot de passe incorrect!";
@@ -23,7 +25,7 @@ if(isset($_POST['login'])){
           }else{
             $error = "Email ou Mot de passe incorrect!";
           }
-      }else{
+      }else{ 
           echo "All input fields are required!";
       }
     }
@@ -43,9 +45,9 @@ if(isset($_POST['login'])){
     <link rel="stylesheet" href="./css/styles.css?<?php echo time(); ?>" />
     <title>Login</title>
     <style>
-      .text-danger{
+      /* .text-danger{ */
         /* color: red !important; */
-      }
+      /* } */
     </style>
   </head>
   <body>

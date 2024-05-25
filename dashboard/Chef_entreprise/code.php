@@ -8,14 +8,15 @@ if(isset($_POST['taken']))
   $id = mysqli_real_escape_string($con, $_POST['id']);
   $name = mysqli_real_escape_string($con, $_POST['assure']);
   $message = "{$name} Souscription reussi.";
-  $_SESSION['mess'] = true;
   $_SESSION['maxi'] = true;
   $_SESSION['info'] = true;
   $_SESSION['payment'] = true;
   $_SESSION['ids'] = $id;
-  $query = "INSERT INTO messages(id,name,message)";
+  $status="accepted";
+  $user=$_SESSION['myuser'];
+  $query = "INSERT INTO messages(id,name,status,message,unique_id)";
   
-  $query .= "VALUES ('$id','$name','$message')";
+  $query .= "VALUES ('$id','$name','$status','$message','$user')";
   
   $sql = mysqli_query($con, $query);
   
@@ -26,17 +27,19 @@ if(isset($_POST['taken']))
   
 }
 
+
 if(isset($_POST['reject']))
 {
   $id = mysqli_real_escape_string($con, $_POST['id']);
   $name = mysqli_real_escape_string($con, $_POST['assure']);
   $message = "{$name} Soustription rejecter.";
-  $_SESSION['mess'] = true;
   $_SESSION['maxi'] = true;
   $_SESSION['info'] = false;
-  $query = "INSERT INTO messages(id,name,message)";
+  $status="rejected";
+  $user=$_SESSION['myuser'];
+  $query = "INSERT INTO messages(id,name,status,message,unique_id)";
   
-  $query .= "VALUES ('$id','$name','$message')";
+  $query .= "VALUES ('$id','$name','$status','$message','$user')";
   
   $sql = mysqli_query($con, $query);
   
@@ -44,10 +47,13 @@ if(isset($_POST['reject']))
     $_SESSION['t'] = $message;
     header("Location: home.php");
   }
+  
+}
 
-  }
 
-
+if(isset($_POST['id'])){
+  
+}
 
 // if(isset($_POST['delete_personel']))
 // {
