@@ -174,5 +174,16 @@ if(isset($_POST['submit'])){
           }
         }
       
+
+        if(isset($_GET['delete'])){
+            $id = $_GET['delete'];
+            $sql = mysqli_query($con,"DELETE FROM posts WHERE id = {$id}");
+
+            if($sql){
+              header("Location: post.php");
+            }else{
+              echo '<script>alert("Something went wrong!")</script>';
+            }
+        }
     
 ?>

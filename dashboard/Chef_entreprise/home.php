@@ -119,14 +119,14 @@
                                     echo " ";
                                   }
                                   ?>
-                                  <!-- <a href="pdf.php?id=<?= $personel["id"]; ?>" id="print" class="btn btn-success btn-sm show" style="color:white;display: <?php echo htmlspecialchars($_SESSION['info'] ? 'inline-block' : 'none'); ?>"><i class="fas fa-print"></i></a> -->
-                                  <form action="code.php" method="POST" class="d-inline form-submit">
+                                
+                                  <form action="code.php"  class="d-inline form-submit">
                                   <input type="hidden" name="id" class="id" value="<?=$personel['id'];?>">
                                   <input type="hidden" name="assure" class="assure" value="<?=$personel['assure'];?>">
                                   <button name="taken" type="submit" id="check" class="btn btn-success btn-sm  taken"><i class="fas fa-check"  style="color:white"></i></button>
                                   <button name="reject" type="submit" class="btn btn-danger btn-sm reject"><i class="fas fa-xmark"  style="color:white"></i></button>
                                 </form>
-                                  <!-- <button type="submit" name="delete_personel" value="<?=$personel['id'];?>" class="btn btn-danger btn-sm">Delete</button> -->
+                                 
                               </td>
                             </tr>
 

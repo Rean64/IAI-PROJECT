@@ -1,7 +1,7 @@
 
 <?php
 
-if(isset($_SESSION['myuser'])) :
+if(isset($_SESSION['mess'])) :
 
 ?>
 

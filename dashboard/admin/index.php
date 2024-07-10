@@ -1,6 +1,26 @@
 <?php
   session_start();
   require 'db.php';
+
+  // Language : fr $ en
+if (!isset($_SESSION['language'])) {
+  $_SESSION['language'] = "fr";
+}
+
+if ($_GET) {
+  // var_dump($_GET);
+  // die();
+  switch ($_GET['lang']) {
+    case 'fr':
+      $_SESSION['language'] = 'fr';
+      break;
+    case 'en':
+      $_SESSION['language'] = 'en';
+      break;
+    default:
+      $_SESSION['language'] = 'en';
+  }
+}
 ?>
 <style>
   body{
@@ -14,6 +34,75 @@
   .bg{
     background-color:#1e1e53;
   }
+  .navbar .dropdown ul {
+    display: block;
+    position: absolute;
+    left: 28px;
+    top: calc(100% + 30px);
+    margin: 0;
+    padding: 10px 0;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    background: #010645;
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    transition: 0.3s;
+    border-radius: 4px;
+    list-style-type: none;
+  }
+
+  .navbar .dropdown ul li {
+    min-width: 200px;
+  }
+  
+  .navbar .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .navbar .dropdown ul a i {
+    font-size: 12px;
+  }
+
+  .navbar .dropdown ul a:hover,
+  .navbar .dropdown ul .active:hover,
+  .navbar .dropdown ul li:hover>a {
+    color: var(--color-primary);
+  }
+
+  .navbar .dropdown:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+  }
+
+
+  .navbar .dropdown .dropdown ul {
+    top: 0;
+    left: calc(100% - 30px);
+    visibility: hidden;
+  }
+
+  .navbar .dropdown .dropdown:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: 100%;
+    visibility: visible;
+  }
+
+
+@media (min-width: 1280px) and (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul {
+    left: -90%;
+  }
+
+  .navbar .dropdown .dropdown:hover>ul {
+    left: -100%;
+  }
+}
 </style>
 <?php include('includes/header.php'); ?>
 
@@ -30,8 +119,8 @@
 
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a href="../post.php" class="nav-link active">Post</a>
+        <li class="nav-item">
+            <a href="../post.php?lang=<?php echo $_SESSION['language'];?>" class="nav-link active">Post</a>
           </li>
           <li class="nav-item">
             <a href="index.php" class="nav-link active">Compte</a>
@@ -39,6 +128,33 @@
           <li class="nav-item">
             <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="image/logo.png" alt="" style="width:30px;margin-top:-5px;z-index:99"></a>
           </li>
+          <li class="dropdown">
+          
+          <a><span><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Language' : 'Langage'); ?>
+                  <b style="color:#297559"><?php echo $_SESSION['language'] ?></b></span> <i
+                  class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <ul>
+              <form action="" method="get">
+                  <li>
+                      <label htmlfor="en">
+                          <a href="index.php?lang=en"
+                              style="color:<?php echo $_SESSION['language'] == 'en' ?  'red' :  ''  ?>"><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'English' : 'Anglais'); ?></a>
+                      </label>
+                  </li>
+                  <!-- <input type="submit" name="en" id="en" value="en" hidden /> -->
+
+                  <li>
+                      <label htmlfor="fr">
+                          <a href="index.php?lang=fr"
+                              style="color:<?php echo $_SESSION['language'] == 'fr' ?  'red' :  ''  ?>"><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'French' : 'Francais'); ?></a>
+                      </label>
+                  </li>
+                  <!-- <input type="submit" name="fr" id="fr" value="fr" hidden/> -->
+
+
+              </form>
+          </ul>
+      </li>
         </ul>
       </div>
       

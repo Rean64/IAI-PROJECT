@@ -1,6 +1,7 @@
 <?php
   session_start();
   require 'db.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +34,8 @@
       .bg{
         background-color:#1e1e53;
       }
+
+
     </style>
   </head>
   <body>

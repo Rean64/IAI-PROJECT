@@ -112,7 +112,7 @@
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a href="index.php" class="nav-link active">Compte</a>
+            <a href="index.php" class="nav-link active">Accuile</a>
           </li>
           <li class="nav-item">
             <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="image/logo.png" alt="" style="width:30px;margin-top:-5px"></a>

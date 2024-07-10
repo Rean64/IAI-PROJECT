@@ -8,7 +8,7 @@ require_once 'db.php';
 function getAllActivity() {
     $con = $GLOBALS['con'];
 
-    $query = "SELECT * FROM Posts";
+    $query = "SELECT * FROM Posts ORDER BY id DESC";
     $result = $con->query($query);
     
     // Check if query was successful

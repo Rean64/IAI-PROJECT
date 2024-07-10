@@ -83,14 +83,12 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
           <li class="nav-item">
                 <?php 
                   if(isset($_SESSION['payment'])){ 
-                  echo "<a href='#' class='nav-link' style='color:white;'>Payment</a>";
+                  echo "<a href='payment.php' class='nav-link' style='color:white;'>Payment</a>";
                   }
                   else{
                     echo " ";
                   }
               ?>
-
-                <!-- <a href="#" class="nav-link" style="color:white;display: <?php echo htmlspecialchars($_SESSION['payment'] ? 'inline-block' : 'none');?>">Payment</a> -->
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link i">Compte</a>
@@ -99,6 +97,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
             <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="images/logo.png" alt="" style="width:30px;margin-top:-5px"></a>
           </li>
           <li class="dropdown">
+          
                         <a><span><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Language' : 'Langage'); ?>
                                 <b style="color:#297559"><?php echo $_SESSION['language'] ?></b></span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>

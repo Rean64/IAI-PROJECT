@@ -3,17 +3,33 @@ session_start();
 ?>
 <?php
 
+
+// Language : fr $ en
+if (!isset($_SESSION['language'])) {
+    $_SESSION['language'] = "fr";
+  }
+  
+  if ($_GET) {
+    // var_dump($_GET);
+    // die();
+    switch ($_GET['lang']) {
+      case 'fr':
+        $_SESSION['language'] = 'fr';
+        break;
+      case 'en':
+        $_SESSION['language'] = 'en';
+        break;
+      default:
+        $_SESSION['language'] = 'en';
+    }
+  }
+
 $message = "";
 $error = "";
 
     require_once 'functions.php';
     $AllActivities = getAllActivity();
 
-if (isset($_POST['logout'])) {
-    session_unset();
-    session_destroy();
-    header('Location: index.php');
-}
 
 ?>
 <!doctype html>
@@ -40,17 +56,25 @@ if (isset($_POST['logout'])) {
     <link rel="stylesheet" href="../node_modules/css/bootstrap.min.css">
 
     <!-- STYLE CSS -->
-    <link href="../assets/css/style.css" rel="stylesheet" />
-    <link href="../assets/css/dark-style.css" rel="stylesheet" />
-    <link href="../assets/css/transparent-style.css" rel="stylesheet">
-    <link href="../assets/css/skin-modes.css" rel="stylesheet" />
+    <!-- <link href="../assets/css/style.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="../node_modules/css/bootstrap.min.css">
+    <link href="../assets/css/dark-style.css?<?php echo time(); ?>" rel="stylesheet" />
+    <link href="../assets/css/transparent-style.css?<?php echo time(); ?>" rel="stylesheet">
+    <link href="../assets/css/skin-modes.css?<?php echo time(); ?>" rel="stylesheet" />
+    <link rel="stylesheet" href="../style.css" />
 
     <!--- FONT-ICONS CSS -->
     <link href="../assets/css/icons.css" rel="stylesheet" />
 
     <!-- COLOR SKIN CSS -->
     <link id="theme" rel="stylesheet" type="text/css" media="all" href="../assets/colors/color1.css" />
-
+    <style>
+        .avatar {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+    </style>
 
 </head>
 <body class="app sidebar-mini ltr light-mode">
@@ -65,19 +89,19 @@ if (isset($_POST['logout'])) {
 
 
                         <!-- ROW-2 -->
-                        <div class="row">
+                        <div class="row my-5">
                             <div class="col-12 col-sm-12">
                                 <div class="card">
-                                    <div class="card-header d-flex justify-content-between">
+                                    <div class="card-header d-flex justify-content-between"  style="width:100%">
                                         <h3 class="card-title mb-0">Posts</h3>
                                         <div id="open-modal" class="container-login100-form-btn" style="width:100px">
-                                            <button id="open-modal"  class="login100-form-btn btn-primary">New</button>	                    
+                                            <button id="open-modal"  class="login100-form-btn btn-success px-2">New</button>	                    
                                         </div>
                                     </div>
-                                    <div id="activityForm" class="wrap-login100 p-6" style="display:none;">
+                                    <div id="activityForm" class="wrap-login100 p-3" style="display:none;">
                                         <form action="auth.php" method="post" enctype="multipart/form-data">
                                             <span class="login100-form-title">
-                                                    Activties Form
+                                                   Products Form
                                                 </span>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
@@ -101,7 +125,7 @@ if (isset($_POST['logout'])) {
                                                 <textarea class="input100 border-start-0 ms-0 form-control" style="height:100px" name="descFrench" type="text" placeholder="French Description" required></textarea>
                                             </div>
                                             <!-- Upload image input-->
-                                            <div class="input-group rounded-pill bg-white shadow-sm">
+                                            <div class="input-group rounded-pill bg-white shadow-sm my-3">
                                                 <input name="image" id="upload" type="file" class="form-control border-0">
                                                 <!-- <label id="upload-label" for="upload" class="font-weight-light text-muted"></label> -->
                                                 <div class="input-group-append">
@@ -109,11 +133,11 @@ if (isset($_POST['logout'])) {
                                                 </div>
                                             </div>
                                             <div class="" id="pic" style="display:none;margin-top:10px">
-                                                <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-lg mx-auto d-block" style="height:240px;width:240px;">
+                                                <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-lg mx-auto d-block" style="height:240px;width:240px;object-fit:cover">
                                             </div>
-                                            <div class="container-login100-form-btn">
+                                            <div class="container-login100-form-btn my-3">
                                                 <button id="close-modal" style="width:100px;margin-right:30px"  class="login100-form-btn btn-danger">Cancel</button>	    
-                                                <button type="submit" style="width:100px;margin-left:10px" name="submit"  class="login100-form-btn btn-primary">Save</button>	    
+                                                <button type="submit" style="width:100px;margin-left:10px" name="submit"  class="login100-form-btn btn-success">Save</button>	    
                                             </div>
                                         </form>
                                     </div>
@@ -147,7 +171,7 @@ if (isset($_POST['logout'])) {
                                                     <div class="panel-body tabs-menu-body border-0 pt-0">
                                                         <div class="tab-content">
                                                             <div class="tab-pane active" id="tab5">
-                                                                <div class="table-responsive">
+                                                                <div class="table-responsiv">
                                                                     <table id="data-table"
                                                                         class="table table-bordered text-nowrap mb-0">
                                                                         <thead class="border-top">
@@ -171,53 +195,62 @@ if (isset($_POST['logout'])) {
                                                                         <tbody>
                                                                             <?php
                                                                             $count = 1;
-                                                                                foreach ($AllActivities as $data) { 
-                                                                                    echo '
+                                                                            $lang = $_SESSION['language'] == 'en' ? 'en' : 'fr';
+                                                                                foreach ($AllActivities as $data) {
+                                                                                    $jsonData = json_encode($data); 
+                                                                                    ?>
+                                                                                    
                                                                                     <tr class="border-bottom">
                                                                                         <td class="text-center">
                                                                                             <div class="mt-0 mt-sm-2 d-block">
-                                                                                                <h6
-                                                                                                    class="mb-0 fs-14 fw-semibold">
-                                                                                                    #'.$count++.'</h6>
+                                                                                                <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                                    #<?php echo $count++ ;?></h6>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td class="text-center">
+                                                                                            <div class="mt-0 mt-sm-2 d-block">
+                                                                                                <h6 class="mb-0 fs-14 fw-semibold">
+                                                                                                    <?php echo $data["titleEnglish"];?>
+                                                                                                    </h6>
                                                                                             </div>
                                                                                         </td>
                                                                                         <td class="text-center">
                                                                                             <div class="mt-0 mt-sm-2 d-block">
                                                                                                 <h6
                                                                                                     class="mb-0 fs-14 fw-semibold">
-                                                                                                    '.$data["titleEnglish"].'</h6>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td class="text-center">
-                                                                                            <div class="mt-0 mt-sm-2 d-block">
-                                                                                                <h6
-                                                                                                    class="mb-0 fs-14 fw-semibold">
-                                                                                                    '.$data["titleFrench"].'</h6>
+                                                                                                    <?php echo $data["titleFrench"];?></h6>
                                                                                             </div>
                                                                                         </td>
                                                                                         <td>
-                                                                                            <div class="d-flex">
-                                                                                                <span class="avatar bradius"
-                                                                                                    style="background-image: url(assets/post_images/'.$data["image"].')"></span>
+                                                                                            <div class="">
+                                                                                                <span> <img class="avatar bradius" src="assets/post_images/<?php echo $data["image"];?>" alt=""></span>
                                                                                             </div>
-                                                                                        </td>';
+                                                                                        </td>
                                                                                  
-                                                                                   echo '<td>
+                                                                                       <td>
+                                                                                            
                                                                                             <div class="g-2">
+                                                                                                <a class="btn text-success btn-sm" 
+                                                                                                    data-bs-toggle="tooltip"
+                                                                                                    data-bs-original-title="View"><span 
+                                                                                                        class="fe fe-eye" onclick='openPopUp(<?php echo $jsonData; ?>, "<?php echo $lang; ?>")'></span></a>
                                                                                                 <a class="btn text-primary btn-sm"
                                                                                                     data-bs-toggle="tooltip"
                                                                                                     data-bs-original-title="Edit"><span
-                                                                                                        class="fe fe-edit fs-14"></span></a>
-                                                                                                <a class="btn text-danger btn-sm"
+                                                                                                        class="fe fe-edit"></span></a>
+                                                                                                <a href="auth.php?delete=<?php echo $data["id"];?>" name="delete" class="btn text-danger btn-sm"
                                                                                                     data-bs-toggle="tooltip"
                                                                                                     data-bs-original-title="Delete"><span
-                                                                                                        class="fe fe-trash-2 fs-14"></span></a>
+                                                                                                        class="fe fe-trash-2"></span></a>
                                                                                             </div>
                                                                                         </td>
-                                                                                    </tr>';
-                                                                                }
-                                                                                
-                                                                            ?>
+                                                                                    </tr>
+                                                                                    <?php
+       
+                                                                                    }
+                                                                      
+                                                                                ?>
+                                                                                    
                                                                              
                                                                         </tbody>
                                                                     </table>
@@ -251,6 +284,61 @@ if (isset($_POST['logout'])) {
 
         
     </div>
+
+
+
+    <div id="popup1" class="popup hide-popup1">
+                        <div class="popup-content1">
+                            <div class="popup-close1 text-danger">X
+                                <i class='fas fa-xmark '></i>
+                            </div>
+                            <div class="popup-left1">
+                                <div class="popup-img-container1">
+                                    <img src="assets/post_images/<?php echo htmlspecialchars($data['image']); ?>"
+                                        class="img-fluid popup-img1" alt="">
+                                </div>
+                            </div>
+                            <div class="popup-right1">
+                                <div class="right-content1">
+                                    <h1 id="titl">
+                                        <?php echo htmlspecialchars($_SESSION['language'] == 'en' ? $data['titleEnglish'] : $data['titleFrench']); ?>
+                                    </h1>
+                                    <p id="description">
+                                        <?php echo htmlspecialchars($_SESSION['language'] == 'en' ? $data['descEnglish'] : $data['descFrench']); ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+  </section><!-- popup section -->
+  <script>
+    function openPopUp(data, lang) {
+        // Assuming 'data' is the object passed from PHP
+        const popup = document.getElementById('popup1');
+        const close = document.querySelector('.popup-close1');
+
+        // Setting image source
+        const img = popup.querySelector('.popup-img1');
+        img.src = `assets/post_images/${data.image}`;
+        img.alt = data.titleEnglish; // Or titleFrench, depending on the session language
+
+        // Setting title
+        const title = popup.querySelector('.popup-right1 .right-content1 h1');
+        title.textContent = lang == 'en' ? data.titleEnglish : data.titleFrench; // Or titleFrench
+
+        // Setting description
+        const desc = popup.querySelector('.popup-right1 .right-content1 p');
+        desc.textContent = lang == 'en' ? data.descEnglish : data.descFrench; // Or descFrench
+
+        // Show the popup
+        popup.classList.remove("hide-popup1");
+        popup.classList.add("show-popup1");
+        close.addEventListener('click', ()=>{
+          popup.classList.add("hide-popup1");
+        })
+    }
+</script>
     <!-- FOOTER -->
     <footer class="footers">
         <div class="container">
@@ -349,9 +437,7 @@ if (isset($_POST['logout'])) {
     <!-- CUSTOM JS -->
     <script src="../assets/js/custom.js"></script>
     <script>
-        if($('#title:visible').fadeOut(6000 )){
-          
-        }; 
+        if($('#title:visible').fadeOut(6000 )){}; 
     </script>
     <script>
   document.getElementById("open-modal").addEventListener("click", function() {
@@ -364,7 +450,69 @@ if (isset($_POST['logout'])) {
 	document.getElementById("open-modal").style.display = "block";
 
   });
+
+  
 </script>
+<script>
+  document.getElementById("open-modal").addEventListener("click", function() {
+    document.getElementById("pic").style.display = "none";
+  });
+    function UpdateAccount(image) {
+        var path = "assets/images/users/"+image
+        $('#imageResult').attr('src', path); 
+        document.getElementById("pic").style.display = "block";
+    }
+   function DeleteAccount(id,data) {
+        $("#user_id").val(id)
+        var element = document.getElementById("deletModal");
+        var newElement = document.createElement("h3");
+        newElement.textContent = "Are you sure you want to delete User of name  "+ data +" and Id "+ id +".";
+        element.appendChild(newElement);
+    };
+
+  document.getElementById("close-modal").addEventListener("click", function() {
+	document.getElementById("userForm").style.display = "none";
+	document.getElementById("open-modal").style.display = "block";
+
+  });
+</script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imageResult')
+                    .attr('src', e.target.result);
+                    $( "#pic" ).css( "display", "block" )
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+$(function () {
+    $('#upload').on('change', function () {
+        readURL(input);
+    });
+});
+
+/*  ==========================================
+    SHOW UPLOADED IMAGE NAME
+* ========================================== */
+var input = document.getElementById( 'upload' );
+var infoArea = document.getElementById( 'upload-label' );
+
+input.addEventListener( 'change', showFileName );
+function showFileName( event ) {
+  var input = event.srcElement;
+  var fileName = input.files[0].name;
+  infoArea.textContent = 'File name: ' + fileName;
+}
+        if($('.alert:visible').fadeOut(8000 )){
+          
+        };        
+    </script>
+
 
 </body>
 

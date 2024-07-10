@@ -2,8 +2,16 @@
 session_start();
 require 'db.php';
 
+$id = $_SESSION['myuser'];
+$sqls = "SELECT * FROM messages WHERE unique_id='$id'";
+$stmt = $con->prepare($sqls);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if(isset($_POST['taken']))
+if($result->num_rows > 0){
+  echo '<script>alert("This already exist!")</script>';
+  echo '<script>window.location.href="home.php"</script>';
+}else 
 {
   $id = mysqli_real_escape_string($con, $_POST['id']);
   $name = mysqli_real_escape_string($con, $_POST['assure']);
@@ -14,14 +22,15 @@ if(isset($_POST['taken']))
   $_SESSION['ids'] = $id;
   $status="accepted";
   $user=$_SESSION['myuser'];
+
   $query = "INSERT INTO messages(id,name,status,message,unique_id)";
   
   $query .= "VALUES ('$id','$name','$status','$message','$user')";
   
   $sql = mysqli_query($con, $query);
-  
+
   if($sql){
-    $_SESSION['t'] = $message;
+    $_SESSION['mess'] = $message;
     header("Location: home.php");
   }
   
@@ -44,7 +53,7 @@ if(isset($_POST['reject']))
   $sql = mysqli_query($con, $query);
   
   if($sql){
-    $_SESSION['t'] = $message;
+    $_SESSION['mess'] = $message;
     header("Location: home.php");
   }
   
