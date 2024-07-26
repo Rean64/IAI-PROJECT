@@ -392,7 +392,7 @@ if (popup) {
       popp.classList.remove("open-popup");
     })
 </script>
-<script src="script.js" defer></script>
+<script src="script.js"></script>
   </body>
   <script src="./node_modules/js/bootstrap.min.js"></script>
 </html>

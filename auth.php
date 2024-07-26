@@ -10,7 +10,11 @@
         $location = mysqli_real_escape_string($con, $_POST['location']);
         $age = mysqli_real_escape_string($con, $_POST['age']);
         $gender = mysqli_real_escape_string($con, $_POST['gender']);
-        $random_id = rand(time(), 10000000);//creating random id for users
+        // $random_id = rand(time(), 10000000);//creating random id for users
+        $chars = '0123456789';
+        for($i=0;$i < 6;$i++){
+           $random_id .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+        }
 
     
         $query = "INSERT INTO client(name,email,password,phone,location,age,gender,unique_id)";
@@ -26,7 +30,7 @@
           if(mysqli_num_rows($sql1)>0){
             $row=mysqli_fetch_assoc($sql1);
             $_SESSION['myuser']=$row['unique_id'];  //passing the unique id to the session variable 
-            header("Location: home.php");
+            header("Location: login.php");
             exit(0);
           }
         }else {

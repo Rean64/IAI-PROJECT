@@ -118,6 +118,8 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
   <!-- header end  -->
 
   <body>
+  <?= include('notify.php') ?>
+
     <div class="pay">
         <div class="content">
             <form action="code.php" method="POST">
@@ -129,11 +131,15 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
                     <div class="gray">
                         <p>+237</p>
                     </div>
-                    <input type="text" name="number" value="67859048">
+                    <input type="text" name="number" value="" placeholder="Enter Phone">
                 </div>
 
                 <div class="d-flex2">
                     <input type="text" placeholder="10000">
+                </div>
+                 
+                <div class="d-flex2 my-3">
+                    <input type="text" placeholder="Enter varification code">
                 </div>
 
                 <div class="d-flex">
@@ -149,4 +155,9 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
             </form>
         </div>
     </div>
+
+
+    
+    <script src="script.js"></script>
   </body>
+  </html>

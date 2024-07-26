@@ -1,7 +1,7 @@
 
 <?php
 
-if(isset($_SESSION['mess'])) :
+if(isset($_SESSION['home'])) :
 
 ?>
 
@@ -11,7 +11,7 @@ if(isset($_SESSION['mess'])) :
             
             <div class="message">
                 <span class="text text-1"><?php echo htmlspecialchars($_SESSION['info'] ? 'Success' : 'Sorry'); ?></span>
-                <span class="text text-2"><?= $_SESSION['t']; ?></span>
+                <span class="text text-2"><?= $_SESSION['mess']; ?></span>
             </div>
         </div>
         <i class="fa-solid fa-xmark close"></i>
@@ -20,6 +20,6 @@ if(isset($_SESSION['mess'])) :
     </div>
 
 <?php
-    unset($_SESSION['mess']);
+    unset($_SESSION['home']);
     endif;
 ?> 

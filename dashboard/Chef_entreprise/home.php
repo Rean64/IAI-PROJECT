@@ -120,7 +120,7 @@
                                   }
                                   ?>
                                 
-                                  <form action="code.php"  class="d-inline form-submit">
+                                  <form action="code.php"  class="d-inline form-submit" method="post">
                                   <input type="hidden" name="id" class="id" value="<?=$personel['id'];?>">
                                   <input type="hidden" name="assure" class="assure" value="<?=$personel['assure'];?>">
                                   <button name="taken" type="submit" id="check" class="btn btn-success btn-sm  taken"><i class="fas fa-check"  style="color:white"></i></button>

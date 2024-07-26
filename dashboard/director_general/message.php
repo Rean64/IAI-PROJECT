@@ -11,7 +11,7 @@ if(isset($_SESSION['maxi'])) :
             
             <div class="message">
                 <span class="text text-1"><?php echo htmlspecialchars($_SESSION['info'] ? 'Success' : 'Sorry'); ?></span>
-                <span class="text text-2"><?= $_SESSION['t']; ?></span>
+                <span class="text text-2"><?= $_SESSION['mess']; ?></span>
             </div>
         </div>
         <i class="fa-solid fa-xmark close"></i>

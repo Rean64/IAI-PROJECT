@@ -11,11 +11,11 @@ const button = document.querySelector("button"),
 
         timer1 = setTimeout(() => {
             toast.classList.remove("active");
-        }, 5000); //1s = 1000 milliseconds
+        }, 10000); //1s = 1000 milliseconds
 
         timer2 = setTimeout(() => {
           progress.classList.remove("active");
-        }, 5300);
+        }, 10000);
       });
       
       closeIcon.addEventListener("click", () => {
@@ -23,7 +23,7 @@ const button = document.querySelector("button"),
         
         setTimeout(() => {
           progress.classList.remove("active");
-        }, 300);
+        }, 10000);
 
         clearTimeout(timer1);
         clearTimeout(timer2);

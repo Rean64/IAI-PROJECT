@@ -2,6 +2,7 @@
 session_start();
 require 'db.php';
 
+
 $id = $_SESSION['myuser'];
 $sqls = "SELECT * FROM messages WHERE unique_id='$id'";
 $stmt = $con->prepare($sqls);
@@ -13,28 +14,34 @@ if($result->num_rows > 0){
   echo '<script>window.location.href="home.php"</script>';
 }else 
 {
+if(isset($_POST['taken']))
+{
   $id = mysqli_real_escape_string($con, $_POST['id']);
-  $name = mysqli_real_escape_string($con, $_POST['assure']);
+  $name =  $_POST['assure'];
   $message = "{$name} Souscription reussi.";
+
   $_SESSION['maxi'] = true;
   $_SESSION['info'] = true;
   $_SESSION['payment'] = true;
   $_SESSION['ids'] = $id;
   $status="accepted";
   $user=$_SESSION['myuser'];
-
+  
   $query = "INSERT INTO messages(id,name,status,message,unique_id)";
   
   $query .= "VALUES ('$id','$name','$status','$message','$user')";
   
   $sql = mysqli_query($con, $query);
-
+  
   if($sql){
     $_SESSION['mess'] = $message;
+    $_SESSION['home'] = true;
+    $_SESSION['papi'] = true;
     header("Location: home.php");
   }
   
 }
+
 
 
 if(isset($_POST['reject']))
@@ -57,6 +64,7 @@ if(isset($_POST['reject']))
     header("Location: home.php");
   }
   
+}
 }
 
 
