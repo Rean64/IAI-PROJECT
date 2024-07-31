@@ -2,7 +2,7 @@
   session_start();
   require 'db.php';
 
-
+// if(isset($_SESSION['home'])) var_dump($_SESSION['home']);die;
 // Language : fr $ en
 if (!isset($_SESSION['language'])) {
   $_SESSION['language'] = "fr";
@@ -42,7 +42,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
     <!-- Glide js -->
     <link rel="stylesheet" href="node_modules/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css?<?php echo time();?>" />
@@ -50,7 +50,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
     <link rel="stylesheet" href="notify.css"/>
     <link rel="stylesheet" href="icons/css/all.min.css">
 
-  
+
     <title>Shopnow</title>
     <style>
       img{
@@ -63,7 +63,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
 
 
 
-    
+
 
   <!-- header -->
   <nav class="navbar navbar-light navbar-expand-lg  text-light fixed-top">
@@ -76,13 +76,13 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
         <div class="navbar-toggler-icon"></div>
       </div>
 
-     
+
 
       <div class="collapse navbar-collapse" id="navmenu">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-                <?php 
-                  if(isset($_SESSION['payment'])){ 
+                <?php
+                  if(isset($_SESSION['payment'])){
                   echo "<a href='payment.php' class='nav-link' style='color:white;'>Payment</a>";
                   }
                   else{
@@ -97,7 +97,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
             <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="images/logo.png" alt="" style="width:30px;margin-top:-5px"></a>
           </li>
           <li class="dropdown">
-          
+
                         <a><span><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Language' : 'Langage'); ?>
                                 <b style="color:#297559"><?php echo $_SESSION['language'] ?></b></span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -125,7 +125,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
                     </li>
         </ul>
       </div>
-      
+
   </nav>
   <!-- header end  -->
 
@@ -143,23 +143,23 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
           $reversedActivities = $activities;
 
           // Initialize counter to limit displayed activities
-          
+
 
           $lang = $_SESSION['language'] == 'en' ? 'en' : 'fr';
           // Loop through the reversed array of activities
           foreach ($reversedActivities as $data) {
-           
+
             $jsonData = json_encode($data);
 
           ?>
 
 <div class="col-lg-4 col-sm-6">
-              
+
               <div class="project">
                   <img src="dashboard/assets/post_images/<?php echo htmlspecialchars($data['image']); ?>" alt="" class="img-fluid">
                   <div class="overlay d-block">
                       <div class="mb-5">
-                      <?php 
+                      <?php
                        $texte = substr($data['descEnglish'], 0, 28).'...';
                        $textf = substr($data['descFrench'], 0, 28).'...';
                        ?>
@@ -173,16 +173,16 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
                       </div>
                   </div>
               </div>
-              
+
           </div>
 
                     <?php
-       
+
           }
 
           ?>
-              
-           
+
+
     </div>
     <div id="popup1" class="popup hide-popup1">
                         <div class="popup-content1">
@@ -207,7 +207,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
                             </div>
                         </div>
                     </div>
-    
+
   </section><!-- popup section -->
   <script>
     function openPopUp(data, lang) {
@@ -343,15 +343,67 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
                           <input class="close-btn stop"  value="Fermer">
                            <input class="close-btn" type="submit" value="Ok" name="store">
                         </div>
-                    </div> 
-                </div> 
+                    </div>
+                </div>
             </div>
 
         </form>
     </div>
     </div>
 
-<script> 
+
+    <button onclick="openchat();" class="chatbot-toggler">
+        <span id="OpenBtn" ><i class="fas fa-comment-dots" ></i></span>
+    </button>
+
+      <button class="chatbot-toggler2" onclick="closechat();">
+        <span id="CloseBtn" ><i class="fas fa-xmark"></i></span>
+    </button>
+
+    <div class="card" id="card">
+        <div id="header">
+            <h1>Chatter Box!</h1>
+        </div>
+        
+        <img src="images/logo1.jpeg" alt="">
+        <div id="message-section">
+            <!-- <div class="message" id="bot"><img src="images/logo1.jpeg" alt="" class="img"><span id="bot-response">Hello I'm listening!Go on..</span></div>
+            <div class="message" id="user"><i class="fas fa-user img2"></i> <span id="user-response">I am user..happy to talk with you today like fr i am dumbfounded.</span></div> -->
+        </div>
+
+        <div id="input-section">
+            <textarea  type="text" id="input" placeholder="Type a message" autofocus="autofocus"></textarea>
+            <button class="send" onclick="sendMessage()">
+                <div class="circle"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
+            </button>
+        </div>
+    </div>
+    <script>
+      const opens = document.querySelector('.chatbot-toggler');
+      const close = document.querySelector('.chatbot-toggler2');
+      hide();
+
+      function hide(){
+        document.getElementById('card').setAttribute('style','opacity:0;');
+            close.classList.add('hide');
+        opens.classList.add('show')
+      }
+        function openchat(){
+            close.classList.remove('hide');
+            opens.classList.remove('show');
+            document.getElementById('card').setAttribute('style','opacity:1;');
+        }
+
+        function closechat(){
+            close.classList.add('hide');
+            opens.classList.add('show');
+            document.getElementById('card').setAttribute('style','opacity:0;');
+          
+
+        }
+    </script>
+
+<script>
   let popup = document.querySelector(".popup");
   let closePopup = document.querySelector(".popup-close");
 
@@ -371,15 +423,15 @@ if (popup) {
 <script>
         const open = document.querySelector('.i');
         const pop = document.querySelector('.pop');
-        const hide = document.querySelector('.close');
+        const hides = document.querySelector('.close');
 
         open.addEventListener('click', () =>{
             pop.classList.remove('hide');
         })
-        hide.addEventListener('click', () =>{
+        hides.addEventListener('click', () =>{
             pop.classList.add('hide');
         })
-        
+
 
     </script>
 <script type="text/javascript">
@@ -392,7 +444,7 @@ if (popup) {
       popp.classList.remove("open-popup");
     })
 </script>
-<script src="script.js"></script>
+<script src="script.js?<?php echo time(); ?>"></script>
   </body>
   <script src="./node_modules/js/bootstrap.min.js"></script>
 </html>

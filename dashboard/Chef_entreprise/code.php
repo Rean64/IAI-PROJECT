@@ -16,26 +16,29 @@ if($result->num_rows > 0){
 {
 if(isset($_POST['taken']))
 {
-  $id = mysqli_real_escape_string($con, $_POST['id']);
+  $id =  $_POST['id'];
   $name =  $_POST['assure'];
   $message = "{$name} Souscription reussi.";
 
   $_SESSION['maxi'] = true;
   $_SESSION['info'] = true;
+  $_SESSION['status'] = true;
   $_SESSION['payment'] = true;
   $_SESSION['ids'] = $id;
   $status="accepted";
   $user=$_SESSION['myuser'];
   
-  $query = "INSERT INTO messages(id,name,status,message,unique_id)";
-  
-  $query .= "VALUES ('$id','$name','$status','$message','$user')";
-  
+  $query = "INSERT INTO messages(name,valid,message,unique_id)";
+  $query .= "VALUES ('$name','$status','$message','$user')";
   $sql = mysqli_query($con, $query);
+
+
+  $querys = "UPDATE contract SET valid = '$status' WHERE id = $id";
+  $sqls = mysqli_query($con, $querys);
   
   if($sql){
     $_SESSION['mess'] = $message;
-    $_SESSION['home'] = true;
+    $_SESSION['home'] = $message;
     $_SESSION['papi'] = true;
     header("Location: home.php");
   }
@@ -51,16 +54,20 @@ if(isset($_POST['reject']))
   $message = "{$name} Soustription rejecter.";
   $_SESSION['maxi'] = true;
   $_SESSION['info'] = false;
+  $_SESSION['status'] = false;
   $status="rejected";
   $user=$_SESSION['myuser'];
-  $query = "INSERT INTO messages(id,name,status,message,unique_id)";
-  
-  $query .= "VALUES ('$id','$name','$status','$message','$user')";
-  
+
+  $query = "INSERT INTO messages(name,valid,message,unique_id)";
+  $query .= "VALUES ('$name','$status','$message','$user')";
   $sql = mysqli_query($con, $query);
+
+  $querys = "UPDATE contract SET valid = '$status' WHERE id = $id";
+  $sqls = mysqli_query($con, $querys);
   
   if($sql){
     $_SESSION['mess'] = $message;
+    $_SESSION['home'] = $message;
     header("Location: home.php");
   }
   

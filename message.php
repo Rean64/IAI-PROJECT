@@ -5,13 +5,13 @@ if(isset($_SESSION['home'])) :
 
 ?>
 
-    <div class="toasts">
+    <div class="toasts ">
         <div class="toasts-content">
             <i class="fas fa-solid  <?php echo htmlspecialchars($_SESSION['info'] ? 'fa-check' : 'fa-xmark'); ?> check"></i>
             
             <div class="message">
                 <span class="text text-1"><?php echo htmlspecialchars($_SESSION['info'] ? 'Success' : 'Sorry'); ?></span>
-                <span class="text text-2"><?= $_SESSION['mess']; ?></span>
+                <span class="text text-2"><?= $_SESSION['home']; ?></span>
             </div>
         </div>
         <i class="fa-solid fa-xmark close"></i>

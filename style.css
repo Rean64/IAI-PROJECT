@@ -748,3 +748,263 @@ form .buttons button , .backBtn{
   background-color: transparent;
   border: none;
 }
+
+
+
+
+
+/* chat bot */
+
+body .chatbot-toggler{
+  position: fixed;
+  right: 40px;
+  bottom: 35px;
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: #724ae8;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease ;
+}
+
+.chatbot-toggler span{
+  position: absolute;
+}
+
+.chatbot-toggler.show{
+  display: flex;
+}
+
+.chatbot-toggler2.hide{
+  display: none;
+}
+
+body .chatbot-toggler2{
+  position: fixed;
+  right: 40px;
+  bottom: 35px;
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: #724ae8;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease ;
+}
+
+.chatbot-toggler2 span{
+  position: absolute;
+}
+
+
+
+
+body .card{
+  position: fixed;
+  right: 40px;
+  bottom: 100px;
+  width: 700px;
+  height: 1000px;
+  overflow: hidden;
+  pointer-events: none;
+  transform: scale(0.5);
+  opacity: 1;
+  background: #fff;
+  border-radius: 50px;
+  transform-origin: bottom right;
+  box-shadow: 0 0 128px rgba(0,0,0,0.1),
+              0 32px 64px -48px rgba(0,0,0,0.5);
+  transition: all 0.1s ease ;
+}
+
+.show-chatbot .card{
+  transform: scale(0.5);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body .card #header{
+  background:#724ae8;
+  padding: 16px 0;
+  text-align: center;
+  position: relative;
+}
+body .card #header h1{
+  color:#fff;
+  font-size: 30px;
+  text-align: center;
+}
+
+body .card #message-section::-webkit-scrollbar{
+  width: 10px;
+}
+
+
+body .card #message-section{
+  height:52vw;
+  padding: 0 2.5vw;
+  /* scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG); */
+  /* height:fit-content; */
+  overflow-y: auto !important;
+  position: relative;
+  padding: 30px 20px 100px;
+}
+
+
+
+body .card #message-section::-webkit-scrollbar-track{
+  background: var(--scrollbarBG);
+}
+
+body .card #message-section::-webkit-scrollbar-thumb{
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid  var(--scrollbarBG);
+}
+
+body .card  img{
+    height:150px;
+    width: 150px;
+    border-radius: 100%;
+    border: 3px solid #724ae8;
+    object-fit: cover;
+    position: absolute;
+    bottom: 450px;
+    left: 280px;
+}
+
+body .card #message-section .img{
+    height:50px;
+    width: 50px;
+    border-radius: 100%;
+    border: 3px solid #724ae8;
+    object-fit: cover;
+    position: absolute;
+    bottom: -40px;
+    left: -10px;
+}
+body .card #message-section .img2{
+    height:50px;
+    width: 50px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    border: 3px solid #724ae8;
+    object-fit: cover;
+    position: absolute;
+    bottom: -40px;
+    right: -10px;
+}
+
+body .card #message-section #bot,
+body .card #message-section #user{
+  position: relative;
+  bottom: 0;
+  min-height: 1.5vw;
+  border:0.15vw solid #777;
+  background-color: #fff;
+  border-radius: 1.5vw 1.5vw 1.5vw 0;
+  padding: 1vw;
+  margin: 1.5vw 0;
+  font-size: 25px !important;
+  line-height: 30px;
+}
+
+body .card #message-section #user{
+  border: 1.5px solid #000;
+  border-radius: 1.5vw 1.5vw 0 1.5vw;
+  background-color: #000;
+  float: right;
+}
+
+body .card #message-section #user #user-response{
+  color: #fff;
+  font-size: 25px !important;
+  line-height: 30px;
+}
+
+body .card #message-section .message{
+  color: #000;
+  clear: both;
+  line-height: 1.2vw;
+  font-size: 1.2vw;
+  padding: 8px;
+  position: relative;
+  margin: 8px 0;
+  max-width: 85%;
+  word-wrap: break-word;
+  z-index: 2;
+}
+
+
+body .card #input-section{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  bottom:0;
+  width:100%;
+  z-index: 999999;
+  background:#fff;
+  padding:5px 10px;
+  border: #265df2 solid 8px;
+  border-radius: 0 0 50px 50px;
+  height: 15%;
+}
+
+
+body .card #input-section textarea{
+  height: 80px;
+  width: 85%;
+  pointer-events: all;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  resize: none;
+  padding-left: 20px;
+  /* border: 2px solid red; */
+  border-bottom: solid #000 0.1vw;
+}
+
+body .card .send{
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  pointer-events: all;
+  flex: 0 0 auto;
+  padding: 0;
+  position: relative;
+  /* border: 3px solid red; */
+}
+
+body .card .send .circle{
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer !important;
+}
+
+body .card .send .circle i{
+  font-size: 3.1rem;
+  margin-left: 1vw;
+  margin-top: 1vw;
+}
+
