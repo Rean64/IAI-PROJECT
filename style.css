@@ -773,6 +773,12 @@ body .chatbot-toggler{
   transition: all 0.2s ease ;
 }
 
+.chat{
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+
 .chatbot-toggler span{
   position: absolute;
 }
@@ -817,10 +823,9 @@ body .card{
   width: 700px;
   height: 1000px;
   overflow: hidden;
-  pointer-events: none;
   transform: scale(0.5);
   opacity: 1;
-  background: #fff;
+  background: #ffffff;
   border-radius: 50px;
   transform-origin: bottom right;
   box-shadow: 0 0 128px rgba(0,0,0,0.1),

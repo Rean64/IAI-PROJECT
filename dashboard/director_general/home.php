@@ -248,7 +248,7 @@
                 <tbody id="myTable">
                   <?php
                     $count = 1;
-                      $query = "SELECT assure,montant,taille,poid,product_name,banque,etat,prime,beneficaire,age,date,duree FROM contract,messages WHERE contract.valid = 'accepted' AND messages.valid = 'accepted'";
+                      $query = "SELECT * FROM contract WHERE contract.valid = 'accepted'";
                       $query_run = mysqli_query($con, $query);
 
                       if(mysqli_num_rows($query_run) > 0)

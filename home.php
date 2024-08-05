@@ -351,7 +351,8 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
     </div>
     </div>
 
-
+<!-- chatbot  -->
+ 
     <button onclick="openchat();" class="chatbot-toggler">
         <span id="OpenBtn" ><i class="fas fa-comment-dots" ></i></span>
     </button>

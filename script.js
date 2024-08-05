@@ -35,7 +35,7 @@ closeIcon.addEventListener("click", () => {
       const userMessage = [
         ["hi","hey","hello"],
         ["sure","yes","no"],
-        ["how are you","how is life","how are things","how are you doing"],
+        ["how are you","how is life","how are things","how are you doing","good"],
     
         [
             "your name please",
@@ -52,7 +52,9 @@ closeIcon.addEventListener("click", () => {
         [
             "fine ... how are you?",
             "Pretty well, how are you?",
-            "Fantastic, how are you?"
+            "Fantastic, how are you?",
+            "I am doing greate thank you",
+            "Good to know"
         ],
     
         [
@@ -124,6 +126,7 @@ closeIcon.addEventListener("click", () => {
     
     function compare(triggerArray, replyArray, string){
         let item;
+        let items;
         for (let x = 0; x < triggerArray.length; x++){
             for (let y = 0; y < replyArray.length; y++){
                 if (triggerArray[x][y] === string){
@@ -191,24 +194,25 @@ closeIcon.addEventListener("click", () => {
         voiceControl(product);
     }
 
-    const chatBox = document.querySelector('#message-section');
+    // const chatBox = document.querySelector('#card');
 
-    chatBox.onmouseenter = () =>{
-        console.log('here');
-        window.scrollTo({
-            top: 0,
-            bahevior: 'smooth'
-        });
-        chatBox.classList.add('active');
-      }
-      chatBox.onmouseleave = () =>{
-        chatBox.classList.remove('active');
-      }
+    // chatBox.onmouseenter = () =>{
+    //     console.log('here');
+    //     window.scrollTo({
+    //         top: 0,
+    //         bahevior: 'smooth'
+    //     });
+    //     chatBox.classList.add('active');
+    //   }
 
-      if(!chatBox.classList.contains('active')){//if active class not contains in chatbox then scroll to bttom
-        scrollToBottom();
-       }
+    //   chatBox.onmouseleave = () =>{
+    //     chatBox.classList.remove('active');
+    //   }
+
+    //   if(!chatBox.classList.contains('active')){//if active class not contains in chatbox then scroll to bttom
+    //     scrollToBottom();
+    //    }
       
-      function scrollToBottom(){
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
+    //   function scrollToBottom(){
+    //     chatBox.scrollTop = chatBox.scrollHeight;
+    //   }
