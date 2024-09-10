@@ -1,7 +1,7 @@
 <?php
   session_start();
   require 'db.php';  
-  // var_dump($_SESSION['status']);die;
+  // var_dump($_SESSION['view']);die;
 ?>
 
 <!DOCTYPE html>
@@ -115,9 +115,9 @@
           <li class="nav-item">
             <a href="index.php" class="nav-link active">Accuile</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="image/logo.png" alt="" style="width:30px;margin-top:-5px"></a>
-          </li>
+          </li> -->
         </ul>
       </div>
       
@@ -211,14 +211,14 @@
     </div>
 
     <?php
-        if(isset($_SESSION['status'])):
+        if($_SESSION['view'] === 'accepted'):
     ?>
     <div class="row my-5">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <h4>Liste des demande de souscription validees
-              <a href="../index.php" class="btn btn-danger float-end">Deconnecter</a>
+              <!-- <a href="../index.php" class="btn btn-danger float-end">Deconnecter</a> -->
               <!-- <a href="create.php" class="btn btn-primary float-end me-2">Ajouter</a> -->
             </h4>
           </div>
@@ -275,7 +275,93 @@
                               <td>
                                 <a href="view.php?id=<?= $personel['id']; ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"  style="color:white"></i></a>
                                 <a href="edit.php?id=<?= $personel['id']; ?>" class="btn btn-success btn-sm"><i class="fas fa-pen"  style="color:white"></i></a>
-                                  <a href="pdf.php?id=<?= $personel['id']; ?>" id="print" class="btn btn-success btn-sm show" style="display:<?php echo ($_SESSION['status']) ? 'inline-block' : 'none' ?>"><i class="fas fa-print"></i></a>
+                                  <a href="pdf.php?id=<?= $personel['id']; ?>" id="print" class="btn btn-success btn-sm show" style="display:<?php echo ($_SESSION['view']) ? 'inline-block' : 'none' ?>"><i class="fas fa-print"></i></a>
+                                <form action="code.php" method="POST" class="d-inline">
+                                  <button type="submit" name="delete_personel" value="<?=$personel['id'];?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-can"  style="color:white"></i></button>
+                                </form>
+                              </td>
+                            </tr>
+                           <?php
+                          }
+                      } else {
+                        echo "<h5>No Record Found</h5>";
+                      }
+                  ?>
+                 
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php endif; ?>
+  </div>
+
+    <?php
+        if($_SESSION['views'] === 'rejected'):
+    ?>
+    <div class="row my-5">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Liste des demande de souscription rejected
+              <!-- <a href="../index.php" class="btn btn-danger float-end">Deconnecter</a> -->
+              <!-- <a href="create.php" class="btn btn-primary float-end me-2">Ajouter</a> -->
+            </h4>
+          </div>
+          <div class="form-group me-3">
+            <input type="text" id="myInput" placeholder="Search...." class="form-control float-end" style="max-width:200px">
+          </div>
+          <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Assure</th>
+                    <th>Montant</th>
+                    <th>Taille</th>
+                    <th>Poids</th>
+                    <th>Produit</th>
+                    <th>Banque</th>
+                    <th>Etat sante</th>
+                    <th>Prime</th>
+                    <th>Beneficaire</th>
+                    <th>Date de naissance</th>
+                    <th>Date</th>
+                    <th>Duree</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="myTable">
+                  <?php
+                    $count = 1;
+                      $query = "SELECT * FROM contract WHERE contract.valid = 'rejected'";
+                      $query_run = mysqli_query($con, $query);
+
+                      if(mysqli_num_rows($query_run) > 0)
+                      {
+                          foreach ($query_run as $personel) {
+
+                            ?>
+
+                            <tr>
+                              <td><?= $count++; ?></td>
+                              <td><?= $personel['assure']; ?></td>
+                              <td><?= $personel['montant']; ?></td>
+                              <td><?= $personel['taille']; ?></td>
+                              <td><?= $personel['poid']; ?></td>
+                              <td><?= $personel['product_name']; ?></td>
+                              <td><?= $personel['banque']; ?></td>
+                              <td><?= $personel['etat']; ?></td>
+                              <td><?= $personel['prime']; ?></td>
+                              <td><?= $personel['beneficaire']; ?></td>
+                              <td><?= $personel['age']; ?></td>
+                              <td><?= $personel['date']; ?></td>
+                              <td><?= $personel['duree']; ?></td>
+                              
+                              <td>
+                                <a href="view.php?id=<?= $personel['id']; ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"  style="color:white"></i></a>
+                                <a href="edit.php?id=<?= $personel['id']; ?>" class="btn btn-success btn-sm"><i class="fas fa-pen"  style="color:white"></i></a>
                                 <form action="code.php" method="POST" class="d-inline">
                                   <button type="submit" name="delete_personel" value="<?=$personel['id'];?>" class="btn btn-danger btn-sm"><i class="fas fa-trash-can"  style="color:white"></i></button>
                                 </form>

@@ -61,7 +61,7 @@ $error = "";
     <link href="../assets/css/dark-style.css?<?php echo time(); ?>" rel="stylesheet" />
     <link href="../assets/css/transparent-style.css?<?php echo time(); ?>" rel="stylesheet">
     <link href="../assets/css/skin-modes.css?<?php echo time(); ?>" rel="stylesheet" />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="style.css" />
 
     <!--- FONT-ICONS CSS -->
     <link href="../assets/css/icons.css" rel="stylesheet" />
@@ -78,6 +78,7 @@ $error = "";
 
 </head>
 <body class="app sidebar-mini ltr light-mode">
+    
                 <!--app-content open-->
             <div class="main-content mt-0">
                 <div class="side-app">
@@ -107,22 +108,23 @@ $error = "";
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-account" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" name="titleEnglish" type="text" placeholder="English Title" required>
+                                                <input class="input100 border-start-0 ms-0 form-control" id="titleEnglish" name="titleEnglish" type="text" placeholder="English Title" required>
+                                                <input name="id" id="id" type="text" hidden>
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-account" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" name="titleFrench" type="text" placeholder="French Title" required>
+                                                <input class="input100 border-start-0 ms-0 form-control" id="titleFrench" name="titleFrench" type="text" placeholder="French Title" required>
                                             
                                             </div>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-account" aria-hidden="true"></i>
                                                 </a>
-                                                <textarea class="input100 border-start-0 ms-0 form-control" style="height:100px" name="descEnglish" type="text" placeholder="English Description" required></textarea>
+                                                <textarea class="input100 border-start-0 ms-0 form-control" style="height:100px" id="descEnglish" name="descEnglish" type="text" placeholder="English Description" required></textarea>
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-account" aria-hidden="true"></i>
                                                 </a>
-                                                <textarea class="input100 border-start-0 ms-0 form-control" style="height:100px" name="descFrench" type="text" placeholder="French Description" required></textarea>
+                                                <textarea class="input100 border-start-0 ms-0 form-control" style="height:100px" id="descFrench" name="descFrench" type="text" placeholder="French Description" required></textarea>
                                             </div>
                                             <!-- Upload image input-->
                                             <div class="input-group rounded-pill bg-white shadow-sm my-3">
@@ -137,7 +139,7 @@ $error = "";
                                             </div>
                                             <div class="container-login100-form-btn my-3">
                                                 <button id="close-modal" style="width:100px;margin-right:30px"  class="login100-form-btn btn-danger">Cancel</button>	    
-                                                <button type="submit" style="width:100px;margin-left:10px" name="submit"  class="login100-form-btn btn-success">Save</button>	    
+                                                <button type="submit" style="width:100px;margin-left:10px" name="submit" id="submit"  class="login100-form-btn btn-success">Save</button>	    
                                             </div>
                                         </form>
                                     </div>
@@ -234,12 +236,14 @@ $error = "";
                                                                                                     data-bs-toggle="tooltip"
                                                                                                     data-bs-original-title="View"><span 
                                                                                                         class="fe fe-eye" onclick='openPopUp(<?php echo $jsonData; ?>, "<?php echo $lang; ?>")'></span></a>
-                                                                                                <a class="btn text-primary btn-sm"
+                                                                                                <a href="#activityForm" onclick='UpdateAccount(<?php echo $jsonData; ?>)' class="btn text-primary btn-sm"
                                                                                                     data-bs-toggle="tooltip"
-                                                                                                    data-bs-original-title="Edit"><span
-                                                                                                        class="fe fe-edit"></span></a>
-                                                                                                <a href="auth.php?delete=<?php echo $data["id"];?>" name="delete" class="btn text-danger btn-sm"
-                                                                                                    data-bs-toggle="tooltip"
+                                                                                                    data-bs-original-title="Edit">
+                                                                                                    <span class="fe fe-edit"></span></a>
+                                                                                                <a onclick='DeleteAccount(<?php echo $jsonData; ?>)' name="delete" class="btn text-danger btn-sm"
+                                                                                                data-bs-target="#country-selector"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-toggle="tooltip"
                                                                                                     data-bs-original-title="Delete"><span
                                                                                                         class="fe fe-trash-2"></span></a>
                                                                                             </div>
@@ -310,6 +314,32 @@ $error = "";
                             </div>
                         </div>
                     </div>
+
+
+                        <!-- Country-selector modal-->
+        <div class="modal fade" id="country-selector">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content country-select-modal">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="Test2">Deleting Post<h6><button id="close" aria-label="Close" class="btn-close"
+                            data-bs-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="login100-form validate-form" action="auth.php" method="post" enctype="multipart/form-data">
+                            <input type="hidden" id="user_id" name="id" value="" />
+                            <div id="deletModal"></div>
+                            <div class="container-login100-form-btn">
+                            <button id="close" aria-label="Close" class="btn-close login100-form-btn btn-primary" style="width:100px;margin-left:10px"
+                            data-bs-dismiss="modal" type="button"><span aria-hidden="true">Close</span></button>   
+                                <button type="submit" style="width:100px;margin-left:70px" name="delete"  class="login100-form-btn btn-danger">DELETE</button>	    
+                            </div>
+                        </form>                  
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Country-selector modal-->
     
   </section><!-- popup section -->
   <script>
@@ -454,24 +484,39 @@ $error = "";
   
 </script>
 <script>
+      function UpdateAccount(data) {
+        $('#submit').attr('name', 'update')
+        document.getElementById("activityForm").style.display = "block"; 
+        $("#id").val(data.id)
+        $("#titleEnglish").val(data.titleEnglish)
+        $("#titleFrench").val(data.titleFrench)
+        $("#descEnglish").val(data.descEnglish)
+        $("#descFrench").val(data.descFrench)
+        var path = "assets/post_images/"+ data.image
+        $('#imageResult').attr('src', path); 
+        document.getElementById("pic").style.display = "block";
+        document.getElementById("activityForm").focus();
+	    document.getElementById("open-modal").style.display = "none";
+    }
+
   document.getElementById("open-modal").addEventListener("click", function() {
     document.getElementById("pic").style.display = "none";
   });
-    function UpdateAccount(image) {
-        var path = "assets/images/users/"+image
-        $('#imageResult').attr('src', path); 
-        document.getElementById("pic").style.display = "block";
-    }
-   function DeleteAccount(id,data) {
-        $("#user_id").val(id)
+   
+   function DeleteAccount(data) {
+        $("#user_id").val(data.id)
         var element = document.getElementById("deletModal");
         var newElement = document.createElement("h3");
-        newElement.textContent = "Are you sure you want to delete User of name  "+ data +" and Id "+ id +".";
+        newElement.textContent = "Are you sure you want to delete this post ?";
         element.appendChild(newElement);
+        let lchild = element.lastChild;
+        element.innerHTML = '';
+        element.appendChild(lchild)      
     };
 
-  document.getElementById("close-modal").addEventListener("click", function() {
-	document.getElementById("userForm").style.display = "none";
+  document.getElementById("close-modal").addEventListener("click", function(e) {
+    e.preventDefault()
+	document.getElementById("activityForm").style.display = "none";
 	document.getElementById("open-modal").style.display = "block";
 
   });

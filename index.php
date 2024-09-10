@@ -77,9 +77,9 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
           <li class="nav-item">
             <a href="login.php" class="btn btn-primary py-1 px-3 ">Connexion</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="images/logo.png" alt="" style="width:30px;margin-top:-5px"></a>
-          </li>
+          </li> -->
           <li class="dropdown">
                         <a><span><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Language' : 'Langage'); ?>
                                 <b style="color:#297559"><?php echo $_SESSION['language'] ?></b></span> <i

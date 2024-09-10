@@ -493,8 +493,10 @@ form .buttons button , .backBtn{
 
 .right-content1 {
   text-align: start;
-  width: 85%;
+  width: 700px;
+  word-wrap: break-word;
   margin: 0 auto;
+  padding-left: 50px;
 }
 
 .right-content1 h1 {
@@ -759,8 +761,8 @@ body .chatbot-toggler{
   position: fixed;
   right: 40px;
   bottom: 35px;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   color: #fff;
   display: none;
   align-items: center;
@@ -771,12 +773,7 @@ body .chatbot-toggler{
   cursor: pointer;
   border-radius: 50%;
   transition: all 0.2s ease ;
-}
-
-.chat{
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
+  font-size: 35px;
 }
 
 .chatbot-toggler span{
@@ -795,8 +792,8 @@ body .chatbot-toggler2{
   position: fixed;
   right: 40px;
   bottom: 35px;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   color: #fff;
   display: flex;
   align-items: center;
@@ -805,6 +802,7 @@ body .chatbot-toggler2{
   outline: none;
   background: #724ae8;
   cursor: pointer;
+  font-size: 35px;
   border-radius: 50%;
   transition: all 0.2s ease ;
 }
@@ -825,13 +823,14 @@ body .card{
   overflow: hidden;
   transform: scale(0.5);
   opacity: 1;
-  background: #ffffff;
+  background: #fff;
   border-radius: 50px;
   transform-origin: bottom right;
   box-shadow: 0 0 128px rgba(0,0,0,0.1),
               0 32px 64px -48px rgba(0,0,0,0.5);
   transition: all 0.1s ease ;
 }
+
 
 .show-chatbot .card{
   transform: scale(0.5);

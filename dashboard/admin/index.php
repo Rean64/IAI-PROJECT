@@ -125,9 +125,9 @@ if ($_GET) {
           <li class="nav-item">
             <a href="index.php" class="nav-link active">Compte</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="image/logo.png" alt="" style="width:30px;margin-top:-5px;z-index:99"></a>
-          </li>
+          </li> -->
           <li class="dropdown">
           
           <a><span><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Language' : 'Langage'); ?>

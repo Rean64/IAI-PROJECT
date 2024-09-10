@@ -8,15 +8,15 @@ let timer1, timer2;
 window.onload = function() {
   toast.classList.add("active");
   progress.classList.add("active");
-  console.log("yes i am in");
+
   
   timer1 = setTimeout(() => {
     toast.classList.remove("active");
-  }, 5000); //1s = 1000 milliseconds
+  }, 10000); //1s = 1000 milliseconds
 
   timer2 = setTimeout(() => {
     progress.classList.remove("active");
-  }, 5300);
+  }, 10000);
 };
 
 closeIcon.addEventListener("click", () => {
@@ -31,8 +31,9 @@ closeIcon.addEventListener("click", () => {
 });
 
 
+// chat bot
 
-      const userMessage = [
+    const userMessage = [
         ["hi","hey","hello"],
         ["sure","yes","no"],
         ["how are you","how is life","how are things","how are you doing","good"],
@@ -47,7 +48,7 @@ closeIcon.addEventListener("click", () => {
     ];
     
     const botReply = [
-        ["Hello!","Hi!","hey!","Hi there!"],
+        ["Hello!","Hi!","hey!","Hi there!","Bonjour Comment cava"],
         ["okay"],
         [
             "fine ... how are you?",
@@ -56,7 +57,6 @@ closeIcon.addEventListener("click", () => {
             "I am doing greate thank you",
             "Good to know"
         ],
-    
         [
             "Eli warren at your service"
         ]
@@ -66,14 +66,16 @@ closeIcon.addEventListener("click", () => {
         "Same here,dude.",
         "Ask something else..",
         "hey, i'm listening",
+        "hey, i'm not sure on what you are asking me, please be specific!",
     ];
     
     const synth = window.speechSynthesis;
     
     function voiceControl(string){
         let u = new SpeechSynthesisUtterance(string);
+        u.lang = "fr-FR";
+        u.voice = speechSynthesis.getVoices().find(voice => voice.lang.startsWith("fr"))
         u.text = string;
-        u.lang = "en-aus";
         u.volume = 1;
         u.rate = 1;
         u.pitch = 1;

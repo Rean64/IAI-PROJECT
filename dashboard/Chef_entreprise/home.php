@@ -37,9 +37,9 @@
           <li class="nav-item">
             <a href="index.php" class="nav-link active">Compte</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="image/logo.png" alt="" style="width:30px;margin-top:-5px;z-index:99"></a>
-          </li>
+          </li> -->
         </ul>
       </div>
       
@@ -112,14 +112,14 @@
                               <td>
                                   <a href="view.php?id=<?= $personel['id']; ?>" class="btn btn-info btn-sm"><i class="fas fa-eye"  style="color:white"></i></a>                                 
                                   <form action="code.php"  class="d-inline form-submit" method="post">
-                                  <input type="hidden" name="id" class="id" value="<?=$personel['id'];?>">
+                                  <input type="hidden" name="id" class="id" value="<?=$personel['unique_id'];?>">
                                   <input type="hidden" name="assure" class="assure" value="<?=$personel['assure'];?>">
                                   <button name="taken" type="submit" id="check" class="btn btn-success btn-sm  taken"><i class="fas fa-check"  style="color:white"></i></button>
                                   <button name="reject" type="submit" class="btn btn-danger btn-sm reject"><i class="fas fa-xmark"  style="color:white"></i></button>
                                 </form>
                                  
                               </td>
-                            </tr>
+                            </tr> 
 
                            <?php
                           }

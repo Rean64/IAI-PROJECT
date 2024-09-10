@@ -3,7 +3,7 @@ session_start();
 require 'db.php';
 
 
-$id = $_SESSION['myuser'];
+$id = $_POST['id'];
 $sqls = "SELECT * FROM messages WHERE unique_id='$id'";
 $stmt = $con->prepare($sqls);
 $stmt->execute();
@@ -16,7 +16,6 @@ if($result->num_rows > 0){
 {
 if(isset($_POST['taken']))
 {
-  $id =  $_POST['id'];
   $name =  $_POST['assure'];
   $message = "{$name} Souscription reussi.";
 
@@ -26,19 +25,21 @@ if(isset($_POST['taken']))
   $_SESSION['payment'] = true;
   $_SESSION['ids'] = $id;
   $status="accepted";
-  $user=$_SESSION['myuser'];
+  $user=$_POST['id'];
   
   $query = "INSERT INTO messages(name,valid,message,unique_id)";
   $query .= "VALUES ('$name','$status','$message','$user')";
   $sql = mysqli_query($con, $query);
 
 
-  $querys = "UPDATE contract SET valid = '$status' WHERE id = $id";
+  $querys = "UPDATE contract SET valid = '$status' WHERE unique_id = $user";
   $sqls = mysqli_query($con, $querys);
   
   if($sql){
     $_SESSION['mess'] = $message;
-    $_SESSION['home'] = $message;
+    $_SESSION['home'] = $message; 
+    $_SESSION['view'] = $status;
+    $_SESSION['motdepass'] = $user;
     $_SESSION['papi'] = true;
     header("Location: home.php");
   }
@@ -49,25 +50,26 @@ if(isset($_POST['taken']))
 
 if(isset($_POST['reject']))
 {
-  $id = mysqli_real_escape_string($con, $_POST['id']);
   $name = mysqli_real_escape_string($con, $_POST['assure']);
   $message = "{$name} Soustription rejecter.";
   $_SESSION['maxi'] = true;
   $_SESSION['info'] = false;
   $_SESSION['status'] = false;
   $status="rejected";
-  $user=$_SESSION['myuser'];
+  $user=$_POST['id'];
 
   $query = "INSERT INTO messages(name,valid,message,unique_id)";
   $query .= "VALUES ('$name','$status','$message','$user')";
   $sql = mysqli_query($con, $query);
 
-  $querys = "UPDATE contract SET valid = '$status' WHERE id = $id";
+  $querys = "UPDATE contract SET valid = '$status' WHERE unique_id = $user";
   $sqls = mysqli_query($con, $querys);
   
   if($sql){
     $_SESSION['mess'] = $message;
     $_SESSION['home'] = $message;
+    $_SESSION['motdepass'] = $user;
+    $_SESSION['views'] = $status;
     header("Location: home.php");
   }
   

@@ -66,6 +66,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
 
 
   <!-- header -->
+   
   <nav class="navbar navbar-light navbar-expand-lg  text-light fixed-top">
     <div class="container">
       <a href="#" class="navbar-brand">
@@ -91,11 +92,14 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
               ?>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link i">Compte</a>
+            <a href="#" class="nav-link i">Souscription</a>
           </li>
           <li class="nav-item">
-            <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="images/logo.png" alt="" style="width:30px;margin-top:-5px"></a>
+            <a href="#" class="nav-link">Compte</a>
           </li>
+          <!-- <li class="nav-item">
+            <a href="https://chat.whatsapp.com/H2mSCu6Uawg125vnwuAVKH" class="nav-link"> <img src="images/logo.png" alt="" style="width:30px;margin-top:-5px"></a>
+          </li> -->
           <li class="dropdown">
 
                         <a><span><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Language' : 'Langage'); ?>
@@ -169,7 +173,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
                       <div class="action" onclick='openPopUp(<?php echo $jsonData; ?>, "<?php echo $lang; ?>")'>
                       <button class="btn btn-info py-1 px-4"><?php echo htmlspecialchars($_SESSION['language'] == 'en' ? 'Learn More ' : 'Voir plus'); ?>&nbsp;<i
                                     class="fas fa-angle-right"></i></button>
-                      <!-- <button class="btn btn-primary py-1 px-4 i">Souscrire</button> -->Z
+                      <!-- <button class="btn btn-primary py-1 px-4 i">Souscrire</button> -->
                       </div>
                   </div>
               </div>
@@ -351,7 +355,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
     </div>
     </div>
 
-<!-- chatbot  -->
+<!-- chatbot box -->
  
     <button onclick="openchat();" class="chatbot-toggler">
         <span id="OpenBtn" ><i class="fas fa-comment-dots" ></i></span>
@@ -385,20 +389,20 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
       hide();
 
       function hide(){
-        document.getElementById('card').setAttribute('style','opacity:0;');
+        document.getElementById('card').setAttribute('style','opacity:0;display:none');
             close.classList.add('hide');
         opens.classList.add('show')
       }
         function openchat(){
             close.classList.remove('hide');
             opens.classList.remove('show');
-            document.getElementById('card').setAttribute('style','opacity:1;');
+            document.getElementById('card').setAttribute('style','opacity:1;display:block');
         }
 
         function closechat(){
             close.classList.add('hide');
             opens.classList.add('show');
-            document.getElementById('card').setAttribute('style','opacity:0;');
+            document.getElementById('card').setAttribute('style','opacity:0;display:none');
           
 
         }

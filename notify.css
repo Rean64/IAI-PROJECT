@@ -11,7 +11,7 @@
     border-left: 6px solid #4070f4;
     overflow: hidden;
     transform: translateX(calc(100% + 30px));
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
 }
 .active{
     transform: translateX(0%);
@@ -84,7 +84,7 @@
 }
 
 .progress:before{
-    animation: progress 5s linear forwards;
+    animation: progress 10s linear forwards;
 }
 
 @keyframes progress {

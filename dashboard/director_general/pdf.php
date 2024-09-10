@@ -50,7 +50,7 @@ require 'db.php';
     <a href="#" class="navbar-brand">
     <img src="image/logo1.jpeg" alt="" width="70" style="margin-left: 10px;border-radius:35px">
     </a>
-    <h3 class="text-center" style="">ASSURLIFECAMER</h3>
+    <h3 class="text-center">ASSURLIFECAMER</h3>
     <h3 class="text-center" id="line">CONTRAT D'ASSURANCE VIE</h3>
     <h3 class="text-center" id="lines">Conditions Participations</h3>
   </div>
@@ -137,17 +137,25 @@ require 'db.php';
     <p>Signature DG</p>
   </div>
 </div>
+</div>
 
   <script type="text/javascript">
-    function gendf() {
-        var doc = new jsPDF();
-
-        doc.addHTML(document.getElementById('result')[0], function () {
+    var doc = new jsPDF();
+    const resultDiv = document.getElementById("result")
+    
+    if(resultDiv){   
+       function gendf() {
+        doc.addHTML(resultDiv, function () {
             doc.save('contract form');
             alert("Downloaded!");
-
         });
+
     }
+  }
+
+
+
+    
 
 </script>
 <div align="center" style="margin-top: 10px;">

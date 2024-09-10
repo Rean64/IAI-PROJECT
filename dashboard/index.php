@@ -24,7 +24,7 @@
 							<input type="password" name="password" class="form-control mb-3 f" placeholder="Entrer le mot de passe">
 							<div class="d-flex text-light">
 								<input type="checkbox" name="admin" class="mr-1">Admin  &nbsp;&nbsp;
-								<input type="checkbox" name="service" class="mr-1">Service Client &nbsp;&nbsp;&nbsp;&nbsp;
+								<!-- <input type="checkbox" name="service" class="mr-1">Service Client &nbsp;&nbsp;&nbsp;&nbsp; -->
 								<input type="checkbox" name="director" class="mr-1">Directeur General &nbsp;&nbsp;&nbsp;&nbsp;
 								<input type="checkbox" name="chef" class="mr-1">Chef d'agence
 							</div>
