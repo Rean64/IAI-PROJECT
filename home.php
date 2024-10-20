@@ -47,7 +47,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
     <link rel="stylesheet" href="node_modules/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css?<?php echo time();?>" />
     <link rel="stylesheet" href="style.css?<?php echo time();?>" />
-    <link rel="stylesheet" href="notify.css"/>
+    <link rel="stylesheet" href="notify.css?<?php echo time();?>"/>
     <link rel="stylesheet" href="icons/css/all.min.css">
 
 
@@ -135,7 +135,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
 
   <!-- product -->
 
-  <?php include('message.php') ?>
+  <?php include('notify.php') ?>
 
   <section class="size">
     <div class="container">
@@ -450,6 +450,6 @@ if (popup) {
     })
 </script>
 <script src="script.js?<?php echo time(); ?>"></script>
+<script src="./node_modules/js/bootstrap.min.js"></script>
   </body>
-  <script src="./node_modules/js/bootstrap.min.js"></script>
 </html>

@@ -45,7 +45,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
     <link rel="stylesheet" href="node_modules/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css?<?php echo time();?>" />
     <link rel="stylesheet" href="style.css?<?php echo time();?>" />
-    <link rel="stylesheet" href="notify.css"/>
+    <link rel="stylesheet" href="notify.css?<?php echo time();?>"/>
     <link rel="stylesheet" href="icons/css/all.min.css">
 
   
@@ -118,7 +118,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
   <!-- header end  -->
 
   <body>
-  <?php echo include('notify.php') ?>
+  <?php echo include('message.php') ?>
 
     <div class="pay">
         <div class="content">
@@ -157,7 +157,7 @@ $whatsAppLink = "https://wa.me/{$phoneNumber}?text={$message}";
     </div>
 
 
-    
-    <script src="script.js"></script>
+    <script src="script2.js?<?php echo time(); ?>"></script>
+
   </body>
   </html>

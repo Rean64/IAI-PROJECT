@@ -1,114 +1,86 @@
-
-.toasts{
+/* Container to hold all toasts */
+.toast-container {
     position: fixed;
-    z-index: 99;
-    top: 140px;
-    right: 30px;
-    border-radius: 12px;
-    background: #fff;
-    padding: 20px 35px 20px 25px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    border-left: 6px solid #4070f4;
-    overflow: hidden;
-    transform: translateX(calc(100% + 30px));
-    transition: all .5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
-}
-.active{
-    transform: translateX(0%);
-}
-
-.toasts .toasts-content{
-    display: flex;
-    align-items: center;
-}
-
-.toasts-content .check{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 35px;
-    width: 35px;
-    background-color: #4070f4;
-    color: #fff;
-    font-size: 20px;
-    border-radius: 50%;
-}
-
-.toasts-content .message{
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
-    margin: 0 20px;
+    gap: 10px; /* Space between toasts */
 }
 
-.message .text{
-    font-size: 20px;
-    font-weight: 400;;
-    color: #666666;
+/* Individual toast */
+.toasts {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    color: #333;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 100%;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.message .text.text-1{
-    font-weight: 600;
+/* Active state when the toast is visible */
+.toasts.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Toast content (icon and message) */
+.toasts-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Icon inside the toast */
+.toasts-content i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+/* Message content */
+.message .text {
+    display: block;
+    line-height: 1.4;
+}
+
+/* Title of the toast */
+.text-1 {
+    font-weight: bold;
+}
+
+/* Close button */
+.close {
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #888;
+    transition: color 0.3s;
+}
+
+.close:hover {
     color: #333;
 }
 
-.toasts .close{
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    padding: 5px;
-    cursor: pointer;
-    opacity: 0.7;
-}
-
-.toasts .close:hover{
-    opacity: 1;
-}
-
-.toasts .progress{
+/* Progress bar */
+.progress {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 3px;
+    height: 4px;
     width: 100%;
-    background: #ddd;
+    background-color: #28a745; /* Default color (can be dynamic) */
+    transition: width 10s linear; /* Adjust timing to match your JS */
 }
 
-.toasts .progress.active:before{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #4070f4;
-}
-
-.progress:before{
-    animation: progress 10s linear forwards;
-}
-
-@keyframes progress {
-    100%{
-        right: 100%;
-    }
-}
-
-.button{
-    padding:5px 6px;
-    font-size: 20px;
-    outline: none;
-    border: none;
-    background-color: #4070f4;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.button:hover{
-    background-color: #0e4bf1;
-}
-
-.toasts.active ~ .button{
-    pointer-events: none;
+/* When active, the progress bar fills */
+.progress.active {
+    width: 0;
 }

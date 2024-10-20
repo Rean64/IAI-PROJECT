@@ -1,73 +1,55 @@
-// const button = document.querySelector(".button");
-const toast = document.querySelector(".toasts");
-const closeIcon = document.querySelector(".close");
-const progress = document.querySelector(".progress");
-
-let timer1, timer2;
-
 window.onload = function() {
-  toast.classList.add("active");
-  progress.classList.add("active");
+    const toasts = document.querySelectorAll(".toasts");
 
-  
-  timer1 = setTimeout(() => {
-    toast.classList.remove("active");
-  }, 10000); //1s = 1000 milliseconds
+    toasts.forEach((toast) => {
+        const closeIcon = toast.querySelector(".close");
+        const progress = toast.querySelector(".progress");
 
-  timer2 = setTimeout(() => {
-    progress.classList.remove("active");
-  }, 10000);
+        // Show toast
+        toast.classList.add("active");
+        progress.classList.add("active");
+
+        // Hide toast after 10 seconds
+        setTimeout(() => {
+            toast.classList.remove("active");
+            progress.classList.remove("active");
+        }, 10000);
+
+        // Close toast manually
+        if (closeIcon) {
+            closeIcon.addEventListener("click", () => {
+                console.log("Close icon clicked!"); // Check if this logs
+                toast.classList.remove("active");
+                progress.classList.remove("active");
+            });
+        }
+        
+    });
 };
 
-closeIcon.addEventListener("click", () => {
-  toast.classList.remove("active");
-  
-  setTimeout(() => {
-    progress.classList.remove("active");
-  }, 300);
-
-  clearTimeout(timer1);
-  clearTimeout(timer2);
-});
 
 
 // chat bot
+const userMessage = [
+    ["salut", "coucou", "bonjour"],
+    ["bien sûr", "oui", "non"],
+    ["comment ça va", "comment va la vie", "comment ça se passe", "comment vas-tu", "bien"],
+    ["votre nom s'il vous plaît", "votre nom", "puis-je connaître votre nom", "quel est votre nom", "comment vous appelez-vous"]
+];
 
-    const userMessage = [
-        ["hi","hey","hello"],
-        ["sure","yes","no"],
-        ["how are you","how is life","how are things","how are you doing","good"],
-    
-        [
-            "your name please",
-            "your name",
-            "may i know your name",
-            "what is your name",
-            "what do you call yourself"
-        ]
-    ];
-    
-    const botReply = [
-        ["Hello!","Hi!","hey!","Hi there!","Bonjour Comment cava"],
-        ["okay"],
-        [
-            "fine ... how are you?",
-            "Pretty well, how are you?",
-            "Fantastic, how are you?",
-            "I am doing greate thank you",
-            "Good to know"
-        ],
-        [
-            "Eli warren at your service"
-        ]
-    ];
-    
-    const alternative = [
-        "Same here,dude.",
-        "Ask something else..",
-        "hey, i'm listening",
-        "hey, i'm not sure on what you are asking me, please be specific!",
-    ];
+const botReply = [
+    ["Bonjour Coucou!", "Salut Coucou!", "Bonjour Coucou!", "Salut là!", "Bonjour, comment ça va"],
+    ["d'accord"],
+    ["bien... et toi ?", "Plutôt bien, et toi ?", "Fantastique, et toi ?", "Je vais très bien merci", "Bon à savoir"],
+    ["Eli Warren à votre service"]
+];
+
+const alternative = [
+        "Pareil ici, mec.",
+        "Demande autre chose..",
+        "Hé, je t'écoute",
+        "Hé, je ne suis pas sûr de ce que tu me demandes, sois plus précis s'il te plaît !"
+];
     
     const synth = window.speechSynthesis;
     
@@ -91,18 +73,24 @@ closeIcon.addEventListener("click", () => {
         inputField.value= "";
     }
     
-    document.addEventListener("DOMContentLoaded", () =>{
-        const inputField = document.getElementById("input");
-        inputField.addEventListener("keydown", function(e){
-            if(e.code === "Enter"){
-                    let input = inputField.value.trim();
-                    if(input !== ""){
-                        output(input);
-                    } 
-                    inputField.value= "";
+ document.addEventListener("DOMContentLoaded", () => { 
+    const inputField = document.getElementById("input");
+
+    // Check if inputField exists before adding event listener
+    if (inputField) {
+        inputField.addEventListener("keydown", function(e) {
+            if (e.code === "Enter") {
+                let input = inputField.value.trim();
+                if (input !== "") {
+                    output(input); // Call your output function here
+                } 
+                inputField.value = ""; // Clear the input field
             }
         });
-    });    
+    } else {
+        console.error("Input field with ID 'input' not found.");
+    }
+});   
     
     function output(input){
         let product;

@@ -403,7 +403,7 @@ if (popup) {
 </script>
 
 
-<script src="script.js"></script>
+<script src="script.js?<?php echo time(); ?>"></script>
 <script src="./js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 <?php
-session_start();
+// Start the session (this must be at the top of the script)
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 require 'db.php';
 
 
@@ -17,7 +20,19 @@ if($result->num_rows > 0){
 if(isset($_POST['taken']))
 {
   $name =  $_POST['assure'];
-  $message = "{$name} Souscription reussi.";
+  // Add a new message to the session
+  $message = [
+    'icon' => 'fa-check',        // Example icon
+    'title' => 'Verification Code',  // Message title
+    'content' => "{$name} Souscription reussi.", // Message content
+    'color' => '#28a745'        // Color for success
+  ];
+  $messageD = [
+    'icon' => 'fa-check',        // Example icon
+    'title' => 'Verification Code',  // Message title
+    'content' => "{$name} Souscription reussi.", // Message content
+    'color' => '#28a745'        // Color for success
+  ];
 
   $_SESSION['maxi'] = true;
   $_SESSION['info'] = true;
@@ -26,9 +41,15 @@ if(isset($_POST['taken']))
   $_SESSION['ids'] = $id;
   $status="accepted";
   $user=$_POST['id'];
+  $messagePass = [
+    'icon' => 'fa-check',        // Example icon
+    'title' => "{$name} Verification Code",  // Message title
+    'content' => $user, // Message content
+    'color' => '#28a745'        // Color for success
+  ];
   
-  $query = "INSERT INTO messages(name,valid,message,unique_id)";
-  $query .= "VALUES ('$name','$status','$message','$user')";
+  $query = "INSERT INTO messages(name, valid, unique_id)";
+  $query .= "VALUES ('$name','$status','$user')";
   $sql = mysqli_query($con, $query);
 
 
@@ -36,10 +57,25 @@ if(isset($_POST['taken']))
   $sqls = mysqli_query($con, $querys);
   
   if($sql){
-    $_SESSION['mess'] = $message;
+    // If $_SESSION['mess'] doesn't exist, create an array
+    if (!isset($_SESSION['notifications'])) {
+      $_SESSION['notifications'] = [];
+    }
+    // Add the new notifications to the session array
+    $_SESSION['notifications'][] = $message;
+    // If $_SESSION['mess'] doesn't exist, create an array
+    if (!isset($_SESSION['notificationsd'])) {
+      $_SESSION['notifications'] = [];
+    }
+    // Add the new notifications to the session array
+    $_SESSION['notificationsd'][] = $messageD;
     $_SESSION['home'] = $message; 
     $_SESSION['view'] = $status;
-    $_SESSION['motdepass'] = $user;
+    if (!isset($_SESSION['motdepass'])) {
+        $_SESSION['motdepass'] = [];
+    }
+    // Add messages to session
+    $_SESSION['motdepass'][] =$messagePass;
     $_SESSION['papi'] = true;
     header("Location: home.php");
   }
@@ -51,24 +87,45 @@ if(isset($_POST['taken']))
 if(isset($_POST['reject']))
 {
   $name = mysqli_real_escape_string($con, $_POST['assure']);
-  $message = "{$name} Soustription rejecter.";
+    // Add a new message to the session
+    $message = [
+      'icon' => 'fa-xmark',        // Example icon
+      'title' => 'Verification Code',  // Message title
+      'content' => "{$name} Soustription rejecter.", // Message content
+      'color' => 'red'        // Color for success
+    ];
+    $messageD = [
+      'icon' => 'fa-xmark',        // Example icon
+      'title' => 'Verification Code',  // Message title
+      'content' => "{$name} Soustription rejecter.", // Message content
+      'color' => 'red'        // Color for success
+    ];
   $_SESSION['maxi'] = true;
   $_SESSION['info'] = false;
   $_SESSION['status'] = false;
   $status="rejected";
   $user=$_POST['id'];
 
-  $query = "INSERT INTO messages(name,valid,message,unique_id)";
-  $query .= "VALUES ('$name','$status','$message','$user')";
+  $query = "INSERT INTO messages(name, valid, unique_id)";
+  $query .= "VALUES ('$name','$status','$user')";
   $sql = mysqli_query($con, $query);
 
   $querys = "UPDATE contract SET valid = '$status' WHERE unique_id = $user";
   $sqls = mysqli_query($con, $querys);
   
   if($sql){
-    $_SESSION['mess'] = $message;
-    $_SESSION['home'] = $message;
-    $_SESSION['motdepass'] = $user;
+    // If $_SESSION['mess'] doesn't exist, create an array
+    if (!isset($_SESSION['notifications'])) {
+      $_SESSION['notifications'] = [];
+    }
+    // Add the new notifications to the session array
+    $_SESSION['notifications'][] = $message;
+    // If $_SESSION['mess'] doesn't exist, create an array
+    if (!isset($_SESSION['notificationsd'])) {
+      $_SESSION['notifications'] = [];
+    }
+    // Add the new notifications to the session array
+    $_SESSION['notificationsd'][] = $messageD;
     $_SESSION['views'] = $status;
     header("Location: home.php");
   }

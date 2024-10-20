@@ -1,24 +1,23 @@
-<div class="toasts">
-    <div class="toasts-content">
-        <i class="fas fa-solid <?php echo htmlspecialchars($_SESSION['papi'] ? 'fa-check' : 'fa-check'); ?> check"></i>
-        
-        <div class="message">
-            <span class="text text-1"><?php echo htmlspecialchars($_SESSION['papi'] ? 'Verification Code' : 'Verification Code'); ?></span>
-            <span class="text text-2"><?= $_SESSION['motdepass']; ?></span>
+<div class="toast-container">
+    <?php if (isset($_SESSION['notifications'])): ?>
+        <?php foreach ($_SESSION['notifications'] as $notification): ?>
+        <div class="toasts">
+            <div class="toasts-content">
+                <i class="fas fa-solid <?= htmlspecialchars($notification['icon']); ?> check"></i>
+                <div class="message">
+                    <span class="text text-1"><?= htmlspecialchars($notification['title']); ?></span>
+                    <span class="text text-2"><?= htmlspecialchars($notification['content']); ?></span>
+                </div>
+            </div>
+            <i class="fa-solid fa-xmark close"></i>
+            <div class="progress" style="background-color:<?= htmlspecialchars($notification['color']); ?>"></div>
         </div>
-    </div>
-    <i class="fa-solid fa-xmark close"></i>
-
-    <div class="progress" style="background-color:<?php echo htmlspecialchars($_SESSION['papi'] ?  : '#f44040'); ?>"></div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>
-<?php
-
-if(isset($_SESSION['papi'])) :
-    
-    ?>
-
 
 <?php
-    unset($_SESSION['papi']);
-    endif;
-?> 
+// Clear session notifications
+unset($_SESSION['notifications']);
+
+?>

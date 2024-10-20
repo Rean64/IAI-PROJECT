@@ -1,31 +1,28 @@
-// const button = document.querySelector(".button");
-const toast = document.querySelector(".toasts");
-const closeIcon = document.querySelector(".close");
-const progress = document.querySelector(".progress");
-
-let timer1, timer2;
-
 window.onload = function() {
-  toast.classList.add("active");
-  progress.classList.add("active");
-  console.log("yes i am in");
-  
-  timer1 = setTimeout(() => {
-    toast.classList.remove("active");
-  }, 5000); //1s = 1000 milliseconds
+  const toasts = document.querySelectorAll(".toasts");
 
-  timer2 = setTimeout(() => {
-    progress.classList.remove("active");
-  }, 5300);
+  toasts.forEach((toast) => {
+      const closeIcon = toast.querySelector(".close");
+      const progress = toast.querySelector(".progress");
+
+      // Show toast
+      toast.classList.add("active");
+      progress.classList.add("active");
+
+      // Hide toast after 10 seconds
+      setTimeout(() => {
+          toast.classList.remove("active");
+          progress.classList.remove("active");
+      }, 10000);
+
+      // Close toast manually
+      if (closeIcon) {
+          closeIcon.addEventListener("click", () => {
+              console.log("Close icon clicked!"); // Check if this logs
+              toast.classList.remove("active");
+              progress.classList.remove("active");
+          });
+      }
+      
+  });
 };
-
-closeIcon.addEventListener("click", () => {
-  toast.classList.remove("active");
-  
-  setTimeout(() => {
-    progress.classList.remove("active");
-  }, 300);
-
-  clearTimeout(timer1);
-  clearTimeout(timer2);
-});

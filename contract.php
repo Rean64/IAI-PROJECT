@@ -18,7 +18,7 @@ if(isset($_POST['store']))
   $age = mysqli_real_escape_string($con, $_POST['age']);
   $date = mysqli_real_escape_string($con, $_POST['date']);
   $duree = mysqli_real_escape_string($con, $_POST['duree']);  
-  $user = $_SESSION['myuser']; 
+  $user = rand(time(), 10000000); 
 
   $query = "INSERT INTO contract(assure,montant,taille,poid,product_name,banque,etat,prime,beneficaire,age,date,duree,unique_id)";
   $query .= "VALUES ('$assure','$montant','$taille','$poid','$product_name','$banque','$etat','$prime','$beneficaire','$age','$date','$duree','$user')";

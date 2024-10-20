@@ -88,7 +88,7 @@
             </thead>
             <tbody>
               <?php
-                  $position = "Chef Entreprise";
+                  $position = "chef";
                   $query = "SELECT * FROM chef WHERE position = '$position'";
                   $query_run = mysqli_query($con, $query);
 
